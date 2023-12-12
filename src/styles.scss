@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+// @import '~bootstrap/scss/bootstrap';
+
+// @import url('https://fonts.googleapis.com/css2?family=Anton&family=Comfortaa:wght@500&display=swap');
+
+
+h1, h2, h3 {
+  font-family: 'Anton', sans-serif;
+}
+
+p {
+  font-family: 'Comfortaa', sans-serif;
+}
