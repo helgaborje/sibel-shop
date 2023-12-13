@@ -1,12 +1,12 @@
 <div class="card-container row">
   <div *ngFor="let product of products; let i = index" class="card col-md-4" style="width: 14rem;">
-    <img src="assets/placeholder-img.png" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{product.name}}</h5>
-      <p class="card-text">{{ product.price }} SEK</p>
-      <a href="#" class="btn">Add to cart</a>
-    </div>
+    <a [routerLink]="['/product', product.id]">
+      <img src="assets/placeholder-img.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text">{{ product.price }} SEK</p>
+        <a class="btn">Add to cart</a>
+      </div>
+    </a>
   </div>
-
-
 </div>
