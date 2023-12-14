@@ -6,6 +6,7 @@ import { ShopComponent } from '../components/shop/shop.component';
 import { HomeComponent } from '../components/home/home.component';
 import { CartComponent } from '../components/cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductComponent } from '../components/product/product.component';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationComponent,
     ShopComponent,
     HomeComponent,
+    ProductComponent,
     HttpClientModule
   ],
   templateUrl: './app.component.html',

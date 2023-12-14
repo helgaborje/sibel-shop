@@ -1,7 +1,6 @@
-<!-- <p>Product id {{ product.id }}</p>
-
-<h5>{{ product.name }}</h5>
-<p>{{ product.description }}</p>
-<p>{{ product.price }} SEK</p>
-<a class="btn">Add to cart</a> -->
-<p>product here</p>
+<div class="row product-details" *ngIf="product">
+  <h5>{{ product.name }}</h5>
+  <p>{{ product.description }}</p>
+  <p>{{ product.price }} SEK</p>
+  <a class="btn">Add to cart</a>
+</div>
