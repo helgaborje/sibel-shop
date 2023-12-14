@@ -23,3 +23,32 @@ export class ShopComponent implements OnInit {
     });
   }
 }
+
+// shop.component.ts
+// import { Component, OnInit } from '@angular/core';
+
+// import { Product } from '../../types/types';
+// import { ProductService } from '../../services/product.service';
+// import { RouterModule } from '@angular/router';
+// import { CommonModule } from '@angular/common';
+
+// @Component({
+//   selector: 'app-shop',
+//   standalone: true,
+//   imports: [RouterModule, CommonModule],
+//   styleUrls: ['./shop.component.scss'],
+//   templateUrl: './shop.component.html',
+// })
+// export class ShopComponent implements OnInit {
+//   products: Product[] = [];
+
+//   constructor(private productService: ProductService) {}
+
+//   ngOnInit(): void {
+//     this.productService.getProducts().subscribe((response) => {
+//       console.log('Fetched products:', response);
+//       this.products = response;
+//       this.productService.setProducts(response);
+//     });
+//   }
+// }

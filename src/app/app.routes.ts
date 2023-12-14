@@ -6,8 +6,8 @@ import { ProductComponent } from '../components/product/product.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'shop', component: ShopComponent},
-  {path: 'product/:id', component: ProductComponent},
+  {path: 'products', component: ShopComponent},
+  {path: 'products/:id', component: ProductComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
