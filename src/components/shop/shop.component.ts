@@ -17,7 +17,6 @@ export class ShopComponent implements OnInit {
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 
-// shop.component.ts
 ngOnInit(): void {
   this.fb.getAllProducts().subscribe((products: Product[]) => {
     console.log(products);
