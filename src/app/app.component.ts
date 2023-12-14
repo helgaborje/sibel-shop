@@ -12,6 +12,7 @@ import { ProductComponent } from '../components/product/product.component';
   selector: 'app-root',
   standalone: true,
   imports: [
+
     CartComponent,
     CommonModule,
     RouterOutlet,
@@ -19,7 +20,9 @@ import { ProductComponent } from '../components/product/product.component';
     ShopComponent,
     HomeComponent,
     ProductComponent,
-    HttpClientModule
+    HttpClientModule,
+
+
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
