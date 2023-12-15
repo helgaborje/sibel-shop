@@ -36,6 +36,7 @@ import { Product } from '../../types/types';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
   selector: 'app-product',
@@ -47,7 +48,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class ProductComponent implements OnInit {
   product: Product | undefined;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) { }
+  constructor(private route: ActivatedRoute, private productService: FirebaseService) { }
 
   ngOnInit(): void {
     let productId = this.route.snapshot.paramMap.get('id')!;
