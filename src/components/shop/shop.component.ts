@@ -15,10 +15,10 @@ import { FirebaseService } from '../../services/firebase.service';
 export class ShopComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private http: HttpClient, private fb: FirebaseService) {}
+  constructor(private http: HttpClient, private firebaseService: FirebaseService) {}
 
 ngOnInit(): void {
-  this.fb.getAllProducts().subscribe((products: Product[]) => {
+  this.firebaseService.getAllProducts().subscribe((products: Product[]) => {
     console.log(products);
     this.products = products;
   });

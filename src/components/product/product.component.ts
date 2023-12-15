@@ -48,13 +48,13 @@ import { FirebaseService } from '../../services/firebase.service';
 export class ProductComponent implements OnInit {
   product: Product | undefined;
 
-  constructor(private route: ActivatedRoute, private productService: FirebaseService) { }
+  constructor(private route: ActivatedRoute, private firebasService: FirebaseService) { }
 
   ngOnInit(): void {
     let productId = this.route.snapshot.paramMap.get('id')!;
     console.log('productId', productId)
 
-    productId && this.productService.getProduct(productId).subscribe((response) => {
+    productId && this.firebasService.getProduct(productId).subscribe((response) => {
       console.log('response', response)
       this.product = response;
 
