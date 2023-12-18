@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from '../components/navigation/navigation.component';
@@ -7,6 +7,8 @@ import { HomeComponent } from '../components/home/home.component';
 import { CartComponent } from '../components/cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from '../components/product/product.component';
+import { CartService } from '../services/cart.service';
+import { Cart } from '../types/types';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +29,16 @@ import { ProductComponent } from '../components/product/product.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'fed22m-exjobb-helgaborje';
+
+  cart: Cart = { items: [] };
+
+  constructor(private cartService: CartService) {}
+
+  ngOnInit() {
+    this.cartService.cart.subscribe((_cart) => {
+      this.cart = _cart;
+    });
+  }
 }

@@ -30,7 +30,7 @@
 // }
 
 
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../types/types';
 import { CommonModule } from '@angular/common';
@@ -47,8 +47,14 @@ import { FirebaseService } from '../../services/firebase.service';
 })
 export class ProductComponent implements OnInit {
   product: Product | undefined;
+  @Output() addToCart = new EventEmitter();
 
   constructor(private route: ActivatedRoute, private firebasService: FirebaseService) { }
+
+onAddToCart(product: Product): void {
+  this.addToCart.emit({ product });
+}
+
 
   ngOnInit(): void {
     let productId = this.route.snapshot.paramMap.get('id')!;

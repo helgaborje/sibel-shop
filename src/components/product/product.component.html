@@ -7,7 +7,7 @@
       <h5>{{ product.name }}</h5>
       <p>{{ product.description }}</p>
       <p>{{ product.price }} SEK</p>
-      <a class="btn">Add to cart</a>
+      <a class="btn" (click)="onAddToCart(product)">Add to cart</a>
     </div>
   </div>
 </div>

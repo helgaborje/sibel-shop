@@ -4,6 +4,7 @@ import { Product } from '../../types/types';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FirebaseService } from '../../services/firebase.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-shop',
@@ -15,14 +16,28 @@ import { FirebaseService } from '../../services/firebase.service';
 export class ShopComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private http: HttpClient, private firebaseService: FirebaseService) {}
+  constructor(
+    private firebaseService: FirebaseService,
+    private cartService: CartService
+  ) { }
 
 ngOnInit(): void {
   this.firebaseService.getAllProducts().subscribe((products: Product[]) => {
     console.log(products);
     this.products = products;
   });
-}
+  }
+
+  onAddToCart(product: Product): void {
+    this.cartService.addToCart({
+      product: product.image,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      id: product.id
+    })
+
+  }
 
 }
 

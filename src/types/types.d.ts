@@ -5,3 +5,16 @@ export type Product = {
   description: string
   price: number
 }
+
+
+export type Cart = {
+  items: CartItem[]
+}
+
+export type CartItem = {
+  product: string
+  name: string
+  price: number
+  quantity: number
+  id: number
+}
