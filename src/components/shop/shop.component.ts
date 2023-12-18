@@ -31,6 +31,7 @@ ngOnInit(): void {
   onAddToCart(product: Product): void {
     this.cartService.addToCart({
       product: product.image,
+      image: product.image,
       name: product.name,
       price: product.price,
       quantity: 1,

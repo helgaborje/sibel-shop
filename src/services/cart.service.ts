@@ -29,4 +29,10 @@ export class CartService {
     })
     console.log('Added to cart',this.cart.value)
   }
+
+  getTotal(items: CartItem[]): number {
+    return items
+      .map((item) => item.price * item.quantity)
+      .reduce((prev, current) => prev + current, 0);
+  }
 }
