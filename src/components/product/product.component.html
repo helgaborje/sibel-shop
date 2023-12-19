@@ -1,11 +1,14 @@
-<div class="product-container">
+<!-- <div class="product-container">
   <div class="row product-details" *ngIf="product">
-    <div class="col-md-6">
+    <div class="col-md-6"> -->
+<div>
+  <div *ngIf="product">
+    <div>
       <a [routerLink]="['/product', product.id]">
         <img src="{{ product.image}}" class="card-img-top" alt="...">
       </a>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
       <h5>{{ product.name }}</h5>
       <p>{{ product.description }}</p>
       <p>{{ product.price }} SEK</p>
