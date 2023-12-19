@@ -14,11 +14,18 @@ export class FirebaseService {
     const productsCollection = collection(this.fs, 'products');
     return collectionData(productsCollection, { idField: 'id' }) as Observable<Product[]>;
   }
-
   getProduct(productId: string): Observable<Product | undefined> {
     const productDoc = doc(this.fs, 'products', productId);
     return from(getDoc(productDoc)).pipe(
-      map(doc => (doc.exists() ? doc.data() as Product : undefined))
+      map(doc => (doc.exists() ? { id: doc.id, ...doc.data() } as Product : undefined))
     );
   }
+
+
+  // getProduct(productId: string): Observable<Product | undefined> {
+  //   const productDoc = doc(this.fs, 'products', productId);
+  //   return from(getDoc(productDoc)).pipe(
+  //     map(doc => (doc.exists() ? doc.data() as Product : undefined))
+  //   );
+  // }
 }

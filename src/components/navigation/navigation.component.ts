@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CartComponent } from '../cart/cart.component';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { CartService } from '../../services/cart.service';
-import { Cart } from '../../types/types';
+import { Cart, CartItem } from '../../types/types';
 
 @Component({
   selector: 'app-navigation',
@@ -11,20 +11,42 @@ import { Cart } from '../../types/types';
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
+  private _cart: Cart = { items: [] }
 
-  cart: Cart = { items: [] };
+  itemsQuantity = 0
 
-  constructor(private cartService: CartService) {}
+  @Input()
+  get cart(): Cart {
+    return this._cart
+  }
 
-  ngOnInit() {
-    this.cartService.cart.subscribe((_cart) => {
-      this.cart = _cart;
-      console.log('Cart Items:', this.cart.items);
-    });
+  set cart(cart: Cart) {
+    this._cart = cart;
+
+    this.itemsQuantity = cart.items
+      .map((item) => item.quantity)
+      .reduce((prev, curent) => prev + curent, 0);
+  }
+
+  constructor(private cartService: CartService) { }
 
 
-
+  getTotal(items: CartItem[]): number {
+    return this.cartService.getTotal(items);
   }
 
 }
+// cart: Cart = { items: [] };
+
+// constructor(private cartService: CartService) {}
+
+// ngOnInit() {
+//   this.cartService.cart.subscribe((_cart) => {
+//     this.cart = _cart;
+//     console.log('Cart Items:', this.cart.items);
+//   });
+
+
+
+// }

@@ -28,18 +28,13 @@ import { Cart } from '../types/types';
 })
 export class AppComponent {
   title = 'fed22m-exjobb-helgaborje';
+  cart: Cart = { items: [] };
 
-  // cart: Cart = { items: [] };
+  constructor(private cartService: CartService) {}
 
-  // constructor(private cartService: CartService) {}
-
-  // ngOnInit() {
-  //   this.cartService.cart.subscribe((_cart) => {
-  //     this.cart = _cart;
-  //     console.log('Cart Items:', this.cart.items);
-  //   });
-
-
-
-  // }
+  ngOnInit() {
+    this.cartService.cart.subscribe((_cart) => {
+      this.cart = _cart;
+    });
+  }
 }
