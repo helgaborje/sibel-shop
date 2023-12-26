@@ -9,7 +9,6 @@
     <div class="offcanvas-body">
       <div *ngFor="let item of cart?.items">
         <img src="{{ item.product }}" alt="" height="60px">
-        {{item.id}}
         <h6>{{item.name}} x {{item.quantity}} </h6>
         <p>{{item.price}} SEK</p>
         <hr>
