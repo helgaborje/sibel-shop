@@ -18,3 +18,14 @@ export type CartItem = {
   quantity: number
   id: string
 }
+
+export type Order = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  address: string[]
+  total: number
+  products: CartItem[]
+  timestamp: string | number
+}

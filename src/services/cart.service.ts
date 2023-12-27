@@ -26,6 +26,9 @@ export class CartService {
     this._snackBar.open('1 item added to cart.', 'Ok', { duration: 3000 });
   }
 
+  getCartItems(): CartItem[] {
+    return this.cart.value.items;
+  }
   // addToCart(item: CartItem): void {
   //   console.log('addToCart method called in CartService');
   //   const items = [...this.cart.value.items]

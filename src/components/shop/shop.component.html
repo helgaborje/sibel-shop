@@ -6,7 +6,7 @@
     </div> -->
 
 <div class="card-container row">
-  <div *ngFor="let product of products; let i = index" class="shop-card" style="width: 14rem;">
+  <div *ngFor="let product of products; let i = index" class="shop-card" style="width: 16rem;">
     <app-product [product]="product" (addToCart)="onAddToCart($event)">
 
     </app-product>
