@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+
+
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { Order } from '../../types/types';
 import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
@@ -22,9 +24,13 @@ export class CheckOutComponent {
   customerCity: string = '';
   customerZip: string = '';
 
+  orderSuccess = false;
+  orderError = false;
+
+
   constructor(
     private cartService: CartService,
-    private orderService: OrderService
+    private orderService: OrderService,
   ) { }
 
   getCartItems(): any[] {
@@ -52,9 +58,15 @@ export class CheckOutComponent {
     console.log('order', order);
 
     this.orderService.createOrder(order).subscribe(() => {
+      console.log('Order created');
+     // Show the confirmation modal
+      this.orderSuccess = true;
 
-      // this.cartService.clearCart();
+    }, (error) => {
+      console.log('Error', error);
+      this.orderError = true;
     });
+    // this.cartService.clearCart();
   }
 
 }
