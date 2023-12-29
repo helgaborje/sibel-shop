@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { Component} from '@angular/core';
 import { Order } from '../../types/types';
 import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
