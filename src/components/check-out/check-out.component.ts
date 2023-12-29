@@ -7,6 +7,9 @@ import { OrderService } from '../../services/order.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CartComponent } from '../cart/cart.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OrderConfirmationModalComponent } from '../order-confirmation-modal/order-confirmation-modal.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-check-out',
@@ -31,6 +34,8 @@ export class CheckOutComponent {
   constructor(
     private cartService: CartService,
     private orderService: OrderService,
+    private modalService: NgbModal,
+    private _snackBar: MatSnackBar
   ) { }
 
   getCartItems(): any[] {
@@ -42,8 +47,21 @@ export class CheckOutComponent {
   }
 
   checkout(): void {
+
+    if (!this.customerFirstName || !this.customerLastName || !this.customerAddress || !this.customerCity || !this.customerZip || !this.customerEmail) {
+      console.log('Please fill in all required fields before placing the order.');
+      this._snackBar.open('Please fill in all required fields before placing the order', 'Ok', { duration: 3000 });
+      return;
+    }
+
     const selectedProducts = this.cartService.getCartItems();
     const totalOrder = this.cartService.getTotal(selectedProducts);
+
+  if (totalOrder <= 0) {
+    this._snackBar.open('You need to add something to cart', 'Ok', { duration: 3000 });
+    console.log('Cannot place an order with total 0 or less.');
+    return;
+  }
 
     const order: Order = {
       products: selectedProducts,
@@ -58,15 +76,18 @@ export class CheckOutComponent {
     console.log('order', order);
 
     this.orderService.createOrder(order).subscribe(() => {
+
+      this.openOrderConfirmationModal();
       console.log('Order created');
      // Show the confirmation modal
-      this.orderSuccess = true;
-
-    }, (error) => {
-      console.log('Error', error);
-      this.orderError = true;
+    //  this.modalService.open(document.getElementById('order-confirmation-modal'), { centered: true });
     });
     // this.cartService.clearCart();
+  }
+
+  openOrderConfirmationModal() {
+    const modalRef = this.modalService.open(OrderConfirmationModalComponent);
+    // You can pass data to the modal using modalRef.componentInstance.data = yourData;
   }
 
 }

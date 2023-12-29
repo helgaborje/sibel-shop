@@ -64,9 +64,11 @@
           "configurations": {
             "production": {
               "buildTarget": "fed22m-exjobb-helgaborje:build:production"
+
             },
             "development": {
               "buildTarget": "fed22m-exjobb-helgaborje:build:development"
+
             }
           },
           "defaultConfiguration": "development"
