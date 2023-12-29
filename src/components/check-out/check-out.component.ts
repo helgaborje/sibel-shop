@@ -1,5 +1,3 @@
-
-
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { Order } from '../../types/types';
 import { CartService } from '../../services/cart.service';
@@ -49,7 +47,6 @@ export class CheckOutComponent {
   checkout(): void {
 
     if (!this.customerFirstName || !this.customerLastName || !this.customerAddress || !this.customerCity || !this.customerZip || !this.customerEmail) {
-      console.log('Please fill in all required fields before placing the order.');
       this._snackBar.open('Please fill in all required fields before placing the order', 'Ok', { duration: 3000 });
       return;
     }
@@ -59,7 +56,6 @@ export class CheckOutComponent {
 
   if (totalOrder <= 0) {
     this._snackBar.open('You need to add something to cart', 'Ok', { duration: 3000 });
-    console.log('Cannot place an order with total 0 or less.');
     return;
   }
 
@@ -75,19 +71,16 @@ export class CheckOutComponent {
 
     console.log('order', order);
 
-    this.orderService.createOrder(order).subscribe(() => {
-
-      this.openOrderConfirmationModal();
-      console.log('Order created');
-     // Show the confirmation modal
-    //  this.modalService.open(document.getElementById('order-confirmation-modal'), { centered: true });
+    this.orderService.createOrder(order).subscribe((orderId) => {
+      this.openOrderConfirmationModal(orderId);
+      console.log('Order created with ID:', orderId);
     });
     // this.cartService.clearCart();
   }
 
-  openOrderConfirmationModal() {
+  openOrderConfirmationModal(orderId: string): void {
     const modalRef = this.modalService.open(OrderConfirmationModalComponent);
-    // You can pass data to the modal using modalRef.componentInstance.data = yourData;
+    modalRef.componentInstance.orderId = orderId;
   }
 
 }

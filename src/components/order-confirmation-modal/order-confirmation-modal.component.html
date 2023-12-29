@@ -6,7 +6,9 @@
 </div>
 <div class="modal-body">
   <p>Thank you for your order!</p>
+  <p>Your order confirmation number is <strong>{{ orderId }}</strong></p>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+  <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')"
+    [routerLink]="['/home']">Close</button>
 </div>
