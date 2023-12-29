@@ -72,6 +72,14 @@ export class CheckOutComponent {
     console.log('order', order);
 
     this.orderService.createOrder(order).subscribe((orderId) => {
+      // Clear the input fields
+      this.customerFirstName = '';
+      this.customerLastName = '';
+      this.customerAddress = '';
+      this.customerEmail = '';
+      this.customerCity = '';
+      this.customerZip = '';
+
       this.openOrderConfirmationModal(orderId);
       console.log('Order created with ID:', orderId);
 
