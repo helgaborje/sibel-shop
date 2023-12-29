@@ -74,8 +74,10 @@ export class CheckOutComponent {
     this.orderService.createOrder(order).subscribe((orderId) => {
       this.openOrderConfirmationModal(orderId);
       console.log('Order created with ID:', orderId);
+
+      // Clear cart
+      this.cartService.clearCart();
     });
-    // this.cartService.clearCart();
   }
 
   openOrderConfirmationModal(orderId: string): void {

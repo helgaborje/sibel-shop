@@ -6,9 +6,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CartService {
   cart = new BehaviorSubject<Cart>({ items: [] })
-
 
   constructor(private _snackBar: MatSnackBar) { }
 
@@ -29,31 +29,14 @@ export class CartService {
   getCartItems(): CartItem[] {
     return this.cart.value.items;
   }
-  // addToCart(item: CartItem): void {
-  //   console.log('addToCart method called in CartService');
-  //   const items = [...this.cart.value.items]
-
-  //   // Check if item is already in cart
-  //   const itemsInCart = items.find((_item) => _item.id === item.id)
-  //   console.log('itemsInCart', itemsInCart)
-  //   if (itemsInCart) {
-  //     itemsInCart.quantity += 1
-  //     console.log('Item quantity incremented:', item);
-  //   } else {
-  //     items.push(item)
-  //     console.log('Item added to cart:', item);
-  //   }
-
-  //   this.cart.next({ items })
-  //   this._snackBar.open('Added to cart', 'Ok', {
-  //     duration: 3000
-  //   })
-  //   console.log('Cart updated:', this.cart.value);
-  // }
 
   getTotal(items: CartItem[]): number {
     return items
       .map((item) => item.price * item.quantity)
       .reduce((prev, current) => prev + current, 0);
+  }
+
+  clearCart(): void {
+    this.cart.next({ items: [] });
   }
 }
