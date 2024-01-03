@@ -4,22 +4,27 @@ import { Router } from '@angular/router';
 import { Order } from '../../../types/types';
 import { CommonModule } from '@angular/common';
 import { OrderService } from '../../../services/order.service';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-admin-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatTableModule],
   templateUrl: './admin-home.component.html',
   styleUrl: './admin-home.component.scss'
 })
 export class AdminHomeComponent implements OnInit{
   orders: Order[] = [];
+  dataSource!: MatTableDataSource<any>;
+  displayedColumns: string[] =  ['position','name', 'products', 'total'];
+
+
 
   constructor(
     private authService: AuthService,
     private orderService: OrderService,
     private router: Router
-  ) { }
+    ) { }
 
   logout() {
     this.authService.logout()
@@ -35,6 +40,7 @@ export class AdminHomeComponent implements OnInit{
   ngOnInit() {
     this.orderService.getOrders().subscribe((orders) => {
       this.orders = orders;
+      this.dataSource = new MatTableDataSource(this.orders);
       console.log('Orders', orders);
     });
   }

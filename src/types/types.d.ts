@@ -28,4 +28,5 @@ export type Order = {
   total: number
   products: CartItem[]
   timestamp: string | number
+  pending: boolean
 }

@@ -1,6 +1,46 @@
-<button (click)="logout()" class="btn">Logout</button>
-<h2>Orders</h2>
-<div *ngIf="orders && orders.length > 0">
+<button (click)="logout()" class="btn logout-btn">Logout</button>
+<div class="order-container">
+  <h2>Orders</h2>
+
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let i = index"> {{i + 1}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.firstName}} {{element.lastName}} </td>
+    </ng-container>
+
+    <!-- Products Column -->
+    <ng-container matColumnDef="products">
+      <th mat-header-cell *matHeaderCellDef> Products </th>
+      <td mat-cell *matCellDef="let element">
+        <ul>
+          <li *ngFor="let product of element.products">{{ product.name }}</li>
+        </ul>
+      </td>
+    </ng-container>
+
+    <!-- Total Column -->
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef> Total </th>
+      <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+
+<!-- <div *ngIf="orders && orders.length > 0">
   <ul>
     <li *ngFor="let order of orders">
       ID: {{ order.id }}, Name: {{ order.firstName }} {{ order.lastName }}, Total: {{ order.total }}
@@ -10,4 +50,4 @@
 
 <div *ngIf="orders && orders.length === 0">
   <p>No orders available.</p>
-</div>
+</div> -->

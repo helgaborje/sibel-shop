@@ -66,7 +66,8 @@ export class CheckOutComponent {
       lastName: this.customerLastName,
       address: [this.customerAddress, this.customerCity, this.customerZip],
       email: this.customerEmail,
-      total:  totalOrder
+      total: totalOrder,
+      pending: true
     };
 
     console.log('order', order);
