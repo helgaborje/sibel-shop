@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, DocumentData, DocumentReference } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, DocumentData, DocumentReference, collectionData } from '@angular/fire/firestore';
 import { Observable, from, map } from 'rxjs';
 import { Order } from '../types/types';
 
@@ -15,5 +15,10 @@ export class OrderService {
     return from(addDoc(ordersCollection, order)).pipe(
       map((docRef: DocumentReference<DocumentData, DocumentData>) => docRef.id)
     );
+  }
+
+  getOrders(): Observable<any[]> {
+    const ordersCollection = collection(this.fs, 'orders');
+    return collectionData(ordersCollection, { idField: 'id' });
   }
 }

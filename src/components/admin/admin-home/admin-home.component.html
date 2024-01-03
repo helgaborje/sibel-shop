@@ -1,2 +1,13 @@
-<p>admin-home works!</p>
-<button (click)="logout()">Logout</button>
+<button (click)="logout()" class="btn">Logout</button>
+<h2>Orders</h2>
+<div *ngIf="orders && orders.length > 0">
+  <ul>
+    <li *ngFor="let order of orders">
+      ID: {{ order.id }}, Name: {{ order.firstName }} {{ order.lastName }}, Total: {{ order.total }}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="orders && orders.length === 0">
+  <p>No orders available.</p>
+</div>
