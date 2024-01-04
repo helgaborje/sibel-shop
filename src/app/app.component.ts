@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from '../components/product/product.component';
 import { CartService } from '../services/cart.service';
 import { Cart } from '../types/types';
+import { FooterComponent } from '../components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { Cart } from '../types/types';
     HomeComponent,
     ProductComponent,
     HttpClientModule,
+    FooterComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

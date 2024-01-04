@@ -7,15 +7,17 @@ import { ProductPageComponent } from '../components/product-page/product-page.co
 import { AdminComponent } from '../components/admin/admin.component';
 import { AdminHomeComponent } from '../components/admin/admin-home/admin-home.component';
 import { AuthGuard } from './guard/auth.guard';
+import { AboutComponent } from '../components/about/about.component';
 
 export const routes: Routes = [
-  { path: 'admin', component: AdminComponent},
+  { path: '', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'admin-home', component: AdminHomeComponent, canActivate: [AuthGuard] },
-  {path: 'home', component: HomeComponent},
-  {path: 'products', component: ShopComponent},
+  { path: 'products', component: ShopComponent },
   { path: 'product/:id', component: ProductPageComponent },
-  {path: 'checkout', component: CheckOutComponent},
-  {path: '**', component: PageNotFoundComponent}
+  { path: 'checkout', component: CheckOutComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 

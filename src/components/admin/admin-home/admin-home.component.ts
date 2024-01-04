@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-import { OrdersComponent } from '../../orders/orders.component';
+import { OrdersComponent } from '../orders/orders.component';
 import {MatTabsModule} from '@angular/material/tabs';
 
 @Component({
