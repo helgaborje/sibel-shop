@@ -1,14 +1,8 @@
-<!-- <img src="{{ product.image }}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{product.name}}</h5>
-      <p class="card-text">{{ product.price }} SEK</p>
-      <a class="btn">Add to cart</a>
-    </div> -->
-
-<div class="card-container row">
-  <div *ngFor="let product of products; let i = index" class="shop-card" style="width: 16rem;">
-    <app-product [product]="product" (addToCart)="onAddToCart($event)">
-
-    </app-product>
+<div class="card-container">
+  <div class="row">
+    <div *ngFor="let product of products; let i = index" class="shop-card" style="width: 16rem;">
+      <app-product [product]="product" (addToCart)="onAddToCart($event)">
+      </app-product>
+    </div>
   </div>
 </div>

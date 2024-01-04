@@ -1,6 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Comfortaa:wght@500&display=swap');
 
+body {
+  background-image: url('../src/assets/Pattern_for_web_Left.svg');
+  background-repeat: no-repeat;
+}
 
 h1, h2, h3, h3, h4, h5 {
   font-family: 'Anton', sans-serif;
@@ -23,6 +27,14 @@ text-decoration: none;
   text-transform: uppercase;
   padding-left: 40px;
   padding-right: 40px;
+}
+
+.delete-btn {
+  cursor: pointer;
+}
+
+.check-btn {
+  cursor: pointer;
 }
 
 html, body { height: 100%; }
