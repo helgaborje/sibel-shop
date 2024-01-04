@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { OrderService } from '../../services/order.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-orders',
@@ -12,12 +13,13 @@ import { OrderService } from '../../services/order.service';
   styleUrl: './orders.component.scss'
 })
 export class OrdersComponent implements OnInit {
-  displayedColumns: string[] =  ['position','name', 'products', 'total', 'check' ];
+  displayedColumns: string[] =  ['position','name', 'products', 'total', 'check', 'delete' ];
   newOrders: any[] = [];
   handledOrders: any[] = [];
 
   constructor(
     private orderService: OrderService,
+    private _snackBar: MatSnackBar
   ) { }
 
   private pendingOrders() {
@@ -45,5 +47,15 @@ export class OrdersComponent implements OnInit {
     this.orderService.updateOrder(order).subscribe(() => {
       this.pendingOrders();
     });
+  }
+
+  // Delete order
+  deleteOrder(order: any) {
+    const snackBarRef = this._snackBar.open('Are you sure you want to delete order?', 'Delete', { duration: 5000 });
+    snackBarRef.onAction().subscribe(() => {
+    this.orderService.deleteOrder(order.id).subscribe(() => {
+      this.pendingOrders();
+    });
+  });
   }
 }
