@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, DocumentData, DocumentReference, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, DocumentData, DocumentReference, collectionData, doc, updateDoc } from '@angular/fire/firestore';
 import { Observable, from, map } from 'rxjs';
 import { Order } from '../types/types';
 
@@ -20,5 +20,11 @@ export class OrderService {
   getOrders(): Observable<any[]> {
     const ordersCollection = collection(this.fs, 'orders');
     return collectionData(ordersCollection, { idField: 'id' });
+  }
+
+
+  updateOrder(order: Order): Observable<void> {
+    console.log('order', order);
+    return from(updateDoc(doc(this.fs, `orders/${order.id}`), order));
   }
 }
