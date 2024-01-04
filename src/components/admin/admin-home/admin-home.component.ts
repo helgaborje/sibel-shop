@@ -3,11 +3,12 @@ import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { OrdersComponent } from '../orders/orders.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { ProductsComponent } from '../products/products.component';
 
 @Component({
   selector: 'app-admin-home',
   standalone: true,
-  imports: [OrdersComponent, MatTabsModule],
+  imports: [OrdersComponent, ProductsComponent, MatTabsModule],
   templateUrl: './admin-home.component.html',
   styleUrl: './admin-home.component.scss'
 })

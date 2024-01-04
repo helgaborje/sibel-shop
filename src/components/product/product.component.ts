@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Product } from '../../types/types';
 import { CommonModule } from '@angular/common';
-import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
   selector: 'app-product',
@@ -19,6 +18,4 @@ export class ProductComponent {
   onAddToCart(): void {
     this.addToCart.emit(this.product);
   }
-
-
 }

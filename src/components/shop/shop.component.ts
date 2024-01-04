@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../types/types';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FirebaseService } from '../../services/firebase.service';
 import { CartService } from '../../services/cart.service';
 import { ProductComponent } from '../product/product.component';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-shop',
@@ -17,13 +17,13 @@ export class ShopComponent implements OnInit {
   products: Product[] = [];
 
   constructor(
-    private firebaseService: FirebaseService,
+    private productService: ProductService,
     private cartService: CartService
   ) { }
 
   // Get all products from firebase
   ngOnInit(): void {
-    this.firebaseService.getAllProducts().subscribe((products: Product[]) => {
+    this.productService.getAllProducts().subscribe((products: Product[]) => {
       console.log(products);
       this.products = products;
     });

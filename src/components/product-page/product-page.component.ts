@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FirebaseService } from '../../services/firebase.service';
 import { Product } from '../../types/types';
 import { ProductComponent } from '../product/product.component';
 import { CartService } from '../../services/cart.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-page',
@@ -18,7 +18,7 @@ export class ProductPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private firebaseService: FirebaseService,
+    private productService: ProductService,
     private cartService: CartService
     ) { }
 
@@ -27,7 +27,7 @@ export class ProductPageComponent implements OnInit {
       let productId = this.route.snapshot.paramMap.get('id')!;
       console.log('productId', productId)
 
-    productId && this.firebaseService.getProduct(productId).subscribe((response) => {
+    productId && this.productService.getProduct(productId).subscribe((response) => {
       console.log('response', response)
       this.product = response;
 
