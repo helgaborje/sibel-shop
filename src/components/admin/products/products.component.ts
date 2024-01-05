@@ -4,17 +4,21 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from '../../../services/product.service';
+import { Product } from '../../../types/types';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatIconModule],
+  imports: [CommonModule, MatTableModule, MatIconModule, FormsModule, MatButtonModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit {
   displayedColumns: string[] =  ['position','name', 'description', 'image', 'price', 'edit', 'delete' ];
-  products: any[] = [];
+  // products: any[] = [];
+  products: Product[] = [];
 
   constructor(
     private productService: ProductService,
@@ -29,7 +33,8 @@ export class ProductsComponent implements OnInit {
   // Get all products
   private getProducts() {
     this.productService.getAllProducts().subscribe((products) => {
-      this.products = products;
+      // this.products = products;
+      this.products = products.map(product => ({ ...product, editProduct: false }));
     });
   }
 
@@ -41,5 +46,18 @@ export class ProductsComponent implements OnInit {
       this.getProducts();
     });
   });
+  }
+
+  // Toggle edit mode
+  toggleEdit(product: any) {
+    product.editProduct = !product.editProduct;
+  }
+
+  // Save product changes
+  saveChanges(product: any) {
+    this.productService.updateProduct(product).subscribe(() => {
+      this.getProducts();
+    });
+    product.editProduct = false;
   }
 }
