@@ -1,10 +1,11 @@
 export type Product = {
-  id: string
+  id?: string
   name: string
   price: number
   description: string
   image: string
   editProduct?: boolean
+  [key: string]: any;
 }
 
 

@@ -19,6 +19,14 @@ export class ProductsComponent implements OnInit {
   displayedColumns: string[] =  ['position','name', 'description', 'image', 'price', 'edit', 'delete' ];
   // products: any[] = [];
   products: Product[] = [];
+  addingNewProduct: boolean = false;
+  newProduct: Product = {
+    name: '',
+    description: '',
+    image: '',
+    price: 0,
+    editProduct: true
+  }
 
   constructor(
     private productService: ProductService,
@@ -60,4 +68,23 @@ export class ProductsComponent implements OnInit {
     });
     product.editProduct = false;
   }
-}
+
+  // Add new product
+  addProduct() {
+    this.addingNewProduct = !this.addingNewProduct;
+    if (!this.addingNewProduct) {
+      this.newProduct = { name: '', description: '', image: '', price: 0, editProduct: false };
+    }
+  }
+
+  // Save new product
+  saveNewProduct() {
+    this.productService.createProduct(this.newProduct).subscribe(() => {
+      this.getProducts();
+      this.addProduct();
+    });
+  }
+  }
+
+
+

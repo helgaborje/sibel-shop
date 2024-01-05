@@ -41,7 +41,7 @@ export class ProductPageComponent implements OnInit {
       name: product.name,
       price: product.price,
       quantity: 1,
-      id: product.id
+      id: product.id ?? ''
     })
   }
 }

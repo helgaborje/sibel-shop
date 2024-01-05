@@ -92,12 +92,42 @@
         </td>
       </ng-container>
 
+
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
     </table>
   </div>
 
   <div *ngIf="products.length === 0">
     <p>No products.</p>
   </div>
+
+  <button (click)="addProduct()" class="btn">Add Product</button>
+
+  <!-- Add product -->
+  <ng-container *ngIf="addingNewProduct">
+    <div>
+      <label>Name:</label>
+      <input [(ngModel)]="newProduct.name" />
+    </div>
+    <div>
+      <label>Description:</label>
+      <input [(ngModel)]="newProduct.description" />
+    </div>
+    <div>
+      <label>Image:</label>
+      <input [(ngModel)]="newProduct.image" />
+    </div>
+    <div>
+      <label>Price:</label>
+      <input [(ngModel)]="newProduct.price" />
+    </div>
+    <div>
+      <button mat-stroked-button (click)="saveNewProduct()">Save</button>
+      <button mat-stroked-button (click)="addProduct()">Cancel</button>
+    </div>
+  </ng-container>
+
 </div>

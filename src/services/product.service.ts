@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, collectionData, deleteDoc, doc, getDoc } from "@angular/fire/firestore";
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc } from "@angular/fire/firestore";
 import { Observable, from, map } from "rxjs";
 import { Product } from "../types/types";
 import { updateDoc } from "@angular/fire/firestore";
@@ -30,5 +30,9 @@ export class ProductService {
 
   updateProduct(product: Product): Observable<void> {
     return from(updateDoc(doc(this.fs, `products/${product.id}`), product));
+  }
+
+  createProduct(product: Product): Observable<void> {
+    return from(addDoc(collection(this.fs,'products'), product)).pipe(map(() => { }));
   }
 }
