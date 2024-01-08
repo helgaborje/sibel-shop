@@ -1,24 +1,25 @@
-<div class="product-container">
-  <div class="row product-details">
-    <!-- <div class="col-md-6"> -->
-    <!-- <app-product [product]="product" (addToCart)="onAddToCart($event)">
-    </app-product> -->
-
-    <div>
-      <div *ngIf="product">
-        <div>
-
-          <img src="{{ product.image}}" class="card-img-top" alt="...">
-
-        </div>
-        <div>
-          <h5>{{ product.name }}</h5>
-          <p>{{ product.description }}</p>
-          <p>{{ product.price }} SEK</p>
-          <a class="btn" (click)="product && onAddToCart(product)">Add to cart</a>
-        </div>
-      </div>
+<div class="product-container ">
+  <div class="row product-details" *ngIf="product">
+    <div class="col-6">
+      <img src="{{ product.image}}" class="card-img-top" alt="...">
     </div>
-    <!-- </div> -->
+    <div class="col-6">
+      <h5>{{ product.name }}</h5>
+      <p>{{ product.description }}</p>
+      <h6>Size</h6>
+      <button class="size-btn" mat-stroked-button (click)="selectSize('Small')"
+        [class.selected]="selectedSize === 'Small'">Small</button>
+      <button class="size-btn" mat-stroked-button (click)="selectSize('Medium')"
+        [class.selected]="selectedSize === 'Medium'">Medium</button>
+      <button class="size-btn" mat-stroked-button (click)="selectSize('Large')"
+        [class.selected]="selectedSize === 'Large'">Large</button>
+      <!-- <h6>
+        Colour
+      </h6> -->
+      <strong>
+        <p>{{ product.price }} SEK</p>
+      </strong>
+      <a class="btn" (click)="product && onAddToCart(product)">Add to cart</a>
+    </div>
   </div>
 </div>

@@ -5,22 +5,26 @@ import { ProductComponent } from '../product/product.component';
 import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [ProductComponent, CommonModule],
+  imports: [ProductComponent, CommonModule, MatButtonModule],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.scss'
 })
 export class ProductPageComponent implements OnInit {
   @Input() product: Product | undefined;
+  selectedSize: string = '';
   // products: Product[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private _snackBar: MatSnackBar,
     ) { }
 
 
@@ -37,30 +41,22 @@ export class ProductPageComponent implements OnInit {
 
   onAddToCart(product: Product): void {
     console.log('product from product-page', product)
+    if (!this.selectedSize) {
+      this._snackBar.open('Please select size', 'Ok', { duration: 3000 });
+
+      return;
+    }
     this.cartService.addToCart({
       product: product.image,
       name: product.name,
+      size: this.selectedSize,
       price: product.price,
       quantity: 1,
       id: product.id ?? ''
     })
   }
+
+  selectSize(size: string): void {
+    this.selectedSize = size;
+  }
 }
-
-  // onAddToCart(productId: string): void {
-  //   const product = this.products.find((p) => p.id === productId);
-  //   if (product) {
-  //     this.cartService.addToCart({
-  //       product: product.image,
-  //       image: product.image,
-  //       name: product.name,
-  //       price: product.price,
-  //       quantity: 1,
-  //       id: product.id
-  //     });
-  //   }
-  // }
-
-
-
-

@@ -25,6 +25,7 @@ export class ProductsComponent implements OnInit {
   addingNewProduct: boolean = false;
   newProduct: Product = {
     name: '',
+    size: '',
     description: '',
     image: '',
     price: 0,
@@ -82,7 +83,7 @@ export class ProductsComponent implements OnInit {
   addProduct() {
     this.addingNewProduct = !this.addingNewProduct;
     if (!this.addingNewProduct) {
-      this.newProduct = { name: '', description: '', image: '', price: 0, editProduct: false };
+      this.newProduct = { name: '', size: '', description: '', image: '', price: 0, editProduct: false };
     }
   }
 

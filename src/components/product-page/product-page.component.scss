@@ -3,3 +3,20 @@
   justify-content: center;
   padding: 20px;
 }
+
+.size-btn {
+  margin: 10px 10px 10px 0;
+}
+.size-btn:hover {
+  background-color: #9F62D1;
+  color: white;
+}
+
+.size-btn.selected {
+  background-color: #9F62D1;
+  color: white
+}
+
+.card-img-top {
+  max-height: 600px;
+}

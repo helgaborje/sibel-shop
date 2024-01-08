@@ -6,8 +6,9 @@ body {
   background-repeat: no-repeat;
 }
 
-h1, h2, h3, h3, h4, h5 {
+h1, h2, h3, h3, h4, h5, h6 {
   font-family: 'Anton', sans-serif;
+  text-transform: uppercase;
 }
 
 p {
@@ -29,6 +30,10 @@ text-decoration: none;
   text-transform: uppercase;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.btn:hover{
+  color: #9F62D1;
 }
 
 .delete-btn, .check-btn, .edit-btn {

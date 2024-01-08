@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
   cart: Cart = { items: [] };
   dataSource: CartItem[] = [];
   cartSubscription: Subscription | undefined;
-item: CartItem | undefined;
+  item: CartItem | undefined;
 
 
   constructor(private cartService: CartService) { }
