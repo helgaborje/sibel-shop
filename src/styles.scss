@@ -20,20 +20,20 @@ text-decoration: none;
 
 .btn {
   color: white;
-    background-color: black;
+  background-color: black;
   border-color: black;
   // background-color: #9F62D1;
   // border-color: #9F62D1;
-  border-radius: 0 10px 10px 10px;
+  border-radius: 0 18px 18px 18px;
   font-family: 'Anton', sans-serif;
   text-transform: uppercase;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .delete-btn, .check-btn, .edit-btn {
   cursor: pointer;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
