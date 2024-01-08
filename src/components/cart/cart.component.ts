@@ -50,7 +50,15 @@ item: CartItem | undefined;
     this.cartService.updateItemQuantity(item, -1);
   }
 
-  // remove item from cart
+  // delete item from cart
+  deleteItem(item: CartItem) {
+    this.cartService.updateItemQuantity(item, -item.quantity);
+    // remove item from cart
+    const index = this.dataSource.findIndex((_item) => _item.id === item.id);
+    if (index !== -1) {
+      this.dataSource.splice(index, 1);
+    }
+  }
 
 
 }

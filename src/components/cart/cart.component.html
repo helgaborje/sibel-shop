@@ -8,10 +8,13 @@
   <!-- <hr> -->
   <div *ngIf="cart.items?.length" class="offcanvas-body">
     <div *ngFor="let item of cart?.items">
-      <div class="col-6">
-        <div class="col-12">
+      <div class="row">
+        <div class="col-12 item-container">
           <img src="{{ item.product }}" alt="" height="60px">
           <h6>{{item.name}}</h6>
+          <span class="delete-btn">
+            <img src="../../../assets/Icon_Trash.svg" alt="trash-can" width="22px" (click)="deleteItem(item)">
+          </span>
         </div>
         <!-- <p>{{item.price}} SEK</p> -->
       </div>
