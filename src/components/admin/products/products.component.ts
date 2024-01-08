@@ -7,6 +7,8 @@ import { ProductService } from '../../../services/product.service';
 import { Product } from '../../../types/types';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
 
 @Component({
   selector: 'app-products',
@@ -15,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
+
 export class ProductsComponent implements OnInit {
   displayedColumns: string[] =  ['position','name', 'description', 'image', 'price', 'edit', 'delete' ];
   // products: any[] = [];
@@ -28,9 +31,15 @@ export class ProductsComponent implements OnInit {
     editProduct: true
   }
 
+  selectedFile: File | null = null;
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
   constructor(
     private productService: ProductService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
   ) { }
 
 
@@ -77,6 +86,22 @@ export class ProductsComponent implements OnInit {
     }
   }
 
+  // upload image to Firebase Storage
+  uploadImage(): void {
+    if (this.selectedFile) {
+      const storage = getStorage();
+      const path = `images/${new Date().getTime()}_${this.selectedFile.name}`;
+      const storageRef = ref(storage, path);
+      const task = uploadBytes(storageRef, this.selectedFile);
+
+      task.then(snapshot => {
+        getDownloadURL(snapshot.ref).then(downloadURL => {
+          this.newProduct.image = downloadURL;
+        });
+      });
+    }
+  }
+
   // Save new product
   saveNewProduct() {
     this.productService.createProduct(this.newProduct).subscribe(() => {
@@ -84,7 +109,7 @@ export class ProductsComponent implements OnInit {
       this.addProduct();
     });
   }
-  }
+}
 
 
 

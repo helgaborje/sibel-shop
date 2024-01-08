@@ -122,7 +122,8 @@
     </div>
     <div>
       <label>Image:</label>
-      <input [(ngModel)]="newProduct.image" />
+      <input type="file" (change)="onFileSelected($event)" />
+      <button mat-stroked-button (click)="uploadImage()">Upload</button>
     </div>
     <div>
       <label>Price:</label>
