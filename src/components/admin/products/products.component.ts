@@ -99,8 +99,16 @@ export class ProductsComponent implements OnInit {
         getDownloadURL(snapshot.ref).then(downloadURL => {
           this.newProduct.image = downloadURL;
         });
+
+        // success
+        this._snackBar.open('Image is being uploaded', 'Ok', { duration: 3000 });
+
+      });
+      task.catch(error => {
+        console.log(error);
       });
     }
+
   }
 
   // Save new product

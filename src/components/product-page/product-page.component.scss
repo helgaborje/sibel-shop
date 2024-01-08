@@ -17,6 +17,12 @@
   color: white
 }
 
-.card-img-top {
-  max-height: 600px;
+.product-img {
+  max-width: 400px;
+  min-width: 300px;
+  object-fit: contain;
+}
+
+.product-info {
+  align-items: center;
 }
