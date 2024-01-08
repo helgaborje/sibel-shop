@@ -4,11 +4,12 @@ import { Product } from '../../types/types';
 import { ProductComponent } from '../product/product.component';
 import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [ProductComponent],
+  imports: [ProductComponent, CommonModule],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.scss'
 })

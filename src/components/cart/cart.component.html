@@ -1,22 +1,37 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel">CART</h5>
+    <h5 id="offcanvasRightLabel">YOUR CART</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <!-- <hr> -->
   </div>
   <!-- <span class="mr-16">{{ cart.items.length }} items</span> -->
   <!-- <hr> -->
-  <div *ngIf="cart.items?.length">
-    <div class="offcanvas-body">
-      <div *ngFor="let item of cart?.items">
-        <img src="{{ item.product }}" alt="" height="60px">
-        <h6>{{item.name}} x {{item.quantity}} </h6>
-        <p>{{item.price}} SEK</p>
-        <hr>
+  <div *ngIf="cart.items?.length" class="offcanvas-body">
+    <div *ngFor="let item of cart?.items">
+      <div class="col-6">
+        <div class="col-12">
+          <img src="{{ item.product }}" alt="" height="60px">
+          <h6>{{item.name}}</h6>
+        </div>
+        <!-- <p>{{item.price}} SEK</p> -->
       </div>
-      <div>
-        Total:
-        <span>{{getTotal(cart.items)}} </span>
+      <div class="col-6 d-flex align-items-center justify-content-between">
+        <div class="quantity-buttons">
+          <button (click)="decreaseQuantity(item)">-</button>
+          {{item.quantity}}
+          <button (click)="increaseQuantity(item)">+</button>
+        </div>
+        <div class="total-product-sum">
+          <strong><span>{{getProductTotal(item)}} SEK </span></strong>
+        </div>
       </div>
+      <hr>
+    </div>
+  </div>
+  <div>
+    <hr>
+    <div class="total-sum">
+      <strong><span>Total: {{getTotal(cart.items)}} SEK </span></strong>
     </div>
   </div>
   <button [routerLink]="['/checkout']" type="button" class="btn cart-btn" data-bs-dismiss="offcanvas">Check out</button>

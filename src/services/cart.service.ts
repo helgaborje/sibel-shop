@@ -36,6 +36,20 @@ export class CartService {
       .reduce((prev, current) => prev + current, 0);
   }
 
+  updateItemQuantity(item: CartItem, quantity: number): void {
+    const items = [...this.cart.value.items];
+    const itemIndex = items.findIndex((_item) => _item.id === item.id);
+
+    if (itemIndex !== -1) {
+      items[itemIndex].quantity += quantity;
+    } else {
+      items.push({ ...item, quantity });
+    }
+
+    this.cart.next({ items });
+  }
+
+
   clearCart(): void {
     this.cart.next({ items: [] });
   }

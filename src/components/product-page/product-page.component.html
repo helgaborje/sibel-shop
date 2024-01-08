@@ -1,8 +1,24 @@
 <div class="product-container">
   <div class="row product-details">
     <!-- <div class="col-md-6"> -->
-    <app-product [product]="product" (addToCart)="onAddToCart($event)">
-    </app-product>
+    <!-- <app-product [product]="product" (addToCart)="onAddToCart($event)">
+    </app-product> -->
+
+    <div>
+      <div *ngIf="product">
+        <div>
+
+          <img src="{{ product.image}}" class="card-img-top" alt="...">
+
+        </div>
+        <div>
+          <h5>{{ product.name }}</h5>
+          <p>{{ product.description }}</p>
+          <p>{{ product.price }} SEK</p>
+          <a class="btn" (click)="product && onAddToCart(product)">Add to cart</a>
+        </div>
+      </div>
+    </div>
     <!-- </div> -->
   </div>
 </div>

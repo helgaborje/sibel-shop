@@ -16,6 +16,7 @@ export class CartComponent implements OnInit {
   cart: Cart = { items: [] };
   dataSource: CartItem[] = [];
   cartSubscription: Subscription | undefined;
+item: CartItem | undefined;
 
 
   constructor(private cartService: CartService) { }
@@ -31,7 +32,25 @@ export class CartComponent implements OnInit {
     return this.cartService.getTotal(items);
   }
 
+  getProductTotal(item: CartItem): number {
+    return item.price * item.quantity;
+  }
+
   checkOut() {
 
   }
+
+  // increase quantity
+  increaseQuantity(item: CartItem) {
+    this.cartService.updateItemQuantity(item, 1);
+
+  }
+  // decrease quantity
+  decreaseQuantity(item: CartItem) {
+    this.cartService.updateItemQuantity(item, -1);
+  }
+
+  // remove item from cart
+
+
 }
