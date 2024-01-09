@@ -1,7 +1,7 @@
 .product-container {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  margin: 20px;
 }
 
 .size-btn, .color-btn {
@@ -21,8 +21,16 @@
   max-width: 400px;
   min-width: 300px;
   object-fit: contain;
+  border: 1px solid black;
+  background-color: grey;
 }
 
 .product-info {
   align-items: center;
 }
+
+.carousel-item {
+  width: auto;
+  height: 300px;
+}
+

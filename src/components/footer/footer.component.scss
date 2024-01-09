@@ -1,10 +1,21 @@
-// footer {
-//   background-color: #9F62D1;
-//   z-index: 20;
-//   color: white;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   display: flex;
-//   position: relative;
-// }
+footer {
+  background-color: #9F62D1;
+  // position: absolute;
+  bottom: 0;
+  left: 0;
+  // z-index: 10;
+  width: 100%;
+  height: 60px;
+  color: white;
+  z-index: 20;
+  // flex-direction: column;
+  justify-content: end;
+  // align-items: end;
+  display: flex;
+  position: fixed;
+}
+
+
+.admin-icon {
+  margin: 20px;
+}

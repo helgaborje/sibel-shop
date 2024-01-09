@@ -4,6 +4,10 @@
 body {
   background-image: url('../src/assets/Pattern_for_web_Left.svg');
   background-repeat: no-repeat;
+  font-family: 'Comfortaa', sans-serif;
+  min-height: 100vh;
+      display: flex;
+      flex-direction: column;
 }
 
 h1, h2, h3, h3, h4, h5, h6 {
@@ -36,9 +40,21 @@ text-decoration: none;
   color: #9F62D1;
 }
 
-.delete-btn, .check-btn, .edit-btn {
+.delete-btn, .check-btn, .edit-btn, .admin-icon {
   cursor: pointer;
 }
 
 // html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.content-container {
+  margin-bottom: 60px;
+  margin-left: 40px;
+  margin-right: 40px;
+  flex: 1;
+}
+
+.row {
+  margin: 0;
+}

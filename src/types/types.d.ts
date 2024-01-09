@@ -1,7 +1,7 @@
 export type Product = {
   id?: string
   name: string
-  size: string
+  size?: string
   price: number
   description: string
   image: string
@@ -17,8 +17,8 @@ export type Cart = {
 export type CartItem = {
   product: string
   name: string
-  size: string
-  color: string
+  size?: string
+  color?: string
   price: number
   quantity: number
   id: string

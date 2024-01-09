@@ -20,8 +20,8 @@
           </ng-container>
           <ng-template #editMode>
             <!-- Input field for editing -->
-            <input [(ngModel)]="element.name" />
-            <button mat-stroked-button (click)="saveChanges(element)">Save</button>
+            <input [(ngModel)]="element.name" class="form-control" />
+            <!-- <button mat-stroked-button (click)="saveChanges(element)">Save</button> -->
           </ng-template>
         </td>
       </ng-container>
@@ -35,8 +35,8 @@
           </ng-container>
           <ng-template #editMode>
             <!-- Input field for editing -->
-            <input [(ngModel)]="element.description" />
-            <button mat-stroked-button (click)="saveChanges(element)">Save</button>
+            <input [(ngModel)]="element.description" class="form-control" />
+            <!-- <button mat-stroked-button (click)="saveChanges(element)">Save</button> -->
           </ng-template>
         </td>
       </ng-container>
@@ -46,12 +46,15 @@
         <th mat-header-cell *matHeaderCellDef> Image </th>
         <td mat-cell *matCellDef="let element">
           <ng-container *ngIf="!element.editProduct; else editMode">
-            {{element.image}}
+            <img src="{{element.image}}" alt="" height="60px">
+            <!-- {{element.image}} -->
           </ng-container>
           <ng-template #editMode>
             <!-- Input field for editing -->
-            <input [(ngModel)]="element.image" />
-            <button mat-stroked-button (click)="saveChanges(element)">Save</button>
+            <input type="file" (change)="onFileSelected($event)" class="form-control" />
+            <button class="upload-btn" mat-stroked-button (click)="uploadImage()">Upload</button>
+            <!-- <input [(ngModel)]="element.image" class="form-control" />
+            <button mat-stroked-button (click)="saveChanges(element)">Save</button> -->
           </ng-template>
         </td>
       </ng-container>
@@ -65,8 +68,8 @@
           </ng-container>
           <ng-template #editMode>
             <!-- Input field for editing -->
-            <input [(ngModel)]="element.price" />
-            <button mat-stroked-button (click)="saveChanges(element)">Save</button>
+            <input [(ngModel)]="element.price" class="form-control" />
+            <!-- <button mat-stroked-button (click)="saveChanges(element)">Save</button> -->
           </ng-template>
         </td>
       </ng-container>
@@ -78,7 +81,8 @@
           <span class="edit-btn" (click)="toggleEdit(element)">
             <!-- <mat-icon *ngIf="!element.editProduct">edit</mat-icon> -->
             <img *ngIf="!element.editProduct" src="../../../assets/Icon_Edit.svg" alt="edit" width="22px" />
-            <img *ngIf="element.editProduct" src="../../../assets/Icon_Checkbox_filled.svg" alt="edit" width="22px" />
+            <img *ngIf="element.editProduct" src="../../../assets/Icon_Checkbox_filled.svg" alt="edit" width="22px"
+              (click)="saveChanges(element)" />
 
             <!-- <mat-icon *ngIf="element.editProduct">done</mat-icon> -->
           </span>
@@ -111,28 +115,30 @@
   <button (click)="addProduct()" class="btn">Add Product</button>
 
   <!-- Add product -->
-  <ng-container *ngIf="addingNewProduct">
-    <div>
-      <label>Name:</label>
-      <input [(ngModel)]="newProduct.name" />
-    </div>
-    <div>
-      <label>Description:</label>
-      <input [(ngModel)]="newProduct.description" />
-    </div>
-    <div>
-      <label>Image:</label>
-      <input type="file" (change)="onFileSelected($event)" />
-      <button mat-stroked-button (click)="uploadImage()">Upload</button>
-    </div>
-    <div>
-      <label>Price:</label>
-      <input [(ngModel)]="newProduct.price" />
-    </div>
-    <div>
-      <button mat-stroked-button (click)="saveNewProduct()">Save</button>
-      <button mat-stroked-button (click)="addProduct()">Cancel</button>
-    </div>
-  </ng-container>
+  <form class="row g-3">
+    <ng-container *ngIf="addingNewProduct">
+      <div class="col-md-4">
+        <label class="form-label">Name:</label>
+        <input [(ngModel)]="newProduct.name" type="text" class="form-control" />
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Description:</label>
+        <input [(ngModel)]="newProduct.description" type="text" class="form-control" />
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Image:</label>
+        <input type="file" (change)="onFileSelected($event)" class="form-control" />
+        <button class="upload-btn" mat-stroked-button (click)="uploadImage()">Upload</button>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Price:</label>
+        <input [(ngModel)]="newProduct.price" type="number" class="form-control" />
+      </div>
+      <div>
+        <button class="save-btn" mat-stroked-button (click)="saveNewProduct()">Save</button>
+        <button mat-stroked-button (click)="addProduct()">Cancel</button>
+      </div>
+    </ng-container>
+  </form>
 
 </div>

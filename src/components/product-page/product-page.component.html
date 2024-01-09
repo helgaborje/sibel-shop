@@ -1,34 +1,71 @@
-<div class="product-container row" *ngIf="product">
-  <div class="col-6 product-img">
-    <img src="{{ product.image}}" class="card-img-top" alt="...">
-  </div>
-  <div class="col-6 product-info">
-    <h5>{{ product.name }}</h5>
-    <p>{{ product.description }}</p>
-
-    <!-- size -->
-    <h6>Size</h6>
-    <button class="size-btn" mat-stroked-button (click)="selectSize('Small')"
-      [class.selected]="selectedSize === 'Small'">Small</button>
-    <button class="size-btn" mat-stroked-button (click)="selectSize('Medium')"
-      [class.selected]="selectedSize === 'Medium'">Medium</button>
-    <button class="size-btn" mat-stroked-button (click)="selectSize('Large')"
-      [class.selected]="selectedSize === 'Large'">Large</button>
-
-    <!-- color -->
-    <h6>
-      Color
-    </h6>
-    <button class="color-btn" mat-stroked-button (click)="selectColor('White')"
-      [class.selected]="selectedColor === 'Small'">White</button>
-    <button class="color-btn" mat-stroked-button (click)="selectColor('Black')"
-      [class.selected]="selectedColor === 'Medium'">Black</button>
-    <div>
-
-      <strong>
-        <p>{{ product.price }} SEK</p>
-      </strong>
+<div class="content-container">
+  <div class="product-container row" *ngIf="product">
+    <div class="col-6 product-img">
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{{ product.image}}" class="d-block w-50" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="../../assets/mockups/t-shirt-dessert_black.png" class="d-block w-50" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="../../assets/mockups/t-shirt-dessert_white.png" class="d-block w-50" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
-    <a class="btn" (click)="product && onAddToCart(product)">Add to cart</a>
+
+
+    <!-- <div class="col-6 product-img">
+      <img src="{{ product.image}}" class="card-img-top" alt="...">
+    </div> -->
+    <div class="col-6 product-info">
+      <h5>{{ product.name }}</h5>
+      <p>{{ product.description }}</p>
+
+      <!-- size -->
+      <h6>Size</h6>
+      <button class="size-btn" mat-stroked-button (click)="selectSize('Small')"
+        [class.selected]="selectedSize === 'Small'">Small</button>
+      <button class="size-btn" mat-stroked-button (click)="selectSize('Medium')"
+        [class.selected]="selectedSize === 'Medium'">Medium</button>
+      <button class="size-btn" mat-stroked-button (click)="selectSize('Large')"
+        [class.selected]="selectedSize === 'Large'">Large</button>
+
+      <!-- color -->
+      <h6>
+        Color
+      </h6>
+      <button class="color-btn" mat-stroked-button (click)="selectColor('White')"
+        [class.selected]="selectedColor === 'White'">White</button>
+      <button class="color-btn" mat-stroked-button (click)="selectColor('Black')"
+        [class.selected]="selectedColor === 'Black'">Black</button>
+      <div>
+
+        <strong>
+          <p>{{ product.price }} SEK</p>
+        </strong>
+      </div>
+      <a class="btn" (click)="product && onAddToCart(product)">Add to cart</a>
+    </div>
   </div>
 </div>
