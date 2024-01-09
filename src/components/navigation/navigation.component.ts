@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CartComponent } from '../cart/cart.component';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { Cart, CartItem } from '../../types/types';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,31 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent {
+  @Input() cart: Cart = { items: [] };
+
+  constructor(private cartService: CartService) { }
+  get itemsQuantity(): number {
+    return this.cartService.getCartItems().length;
+  }
+
+  getTotal(items: CartItem[]): number {
+    return this.cartService.getTotal(items);
+  }
+}
+
+
+
+// cart: Cart = { items: [] };
+
+// constructor(private cartService: CartService) {}
+
+// ngOnInit() {
+//   this.cartService.cart.subscribe((_cart) => {
+//     this.cart = _cart;
+//     console.log('Cart Items:', this.cart.items);
+//   });
+
+
   // private _cart: Cart = { items: [] }
   // cartItems: CartItem[] = [];
 
@@ -33,30 +58,6 @@ export class NavigationComponent {
   //     .reduce((prev, curent) => prev + curent, 0);
   // }
 
-  @Input() cart: Cart = { items: [] };
-
-  get itemsQuantity(): number {
-    return this.cartService.getCartItems().length;
-  }
-
-
-  constructor(private cartService: CartService) { }
-
-
-  getTotal(items: CartItem[]): number {
-    return this.cartService.getTotal(items);
-  }
-
-}
-// cart: Cart = { items: [] };
-
-// constructor(private cartService: CartService) {}
-
-// ngOnInit() {
-//   this.cartService.cart.subscribe((_cart) => {
-//     this.cart = _cart;
-//     console.log('Cart Items:', this.cart.items);
-//   });
 
 
 

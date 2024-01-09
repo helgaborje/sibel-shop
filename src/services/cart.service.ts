@@ -10,25 +10,37 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CartService {
   private cartSubject = new BehaviorSubject<Cart>({ items: [] });
   private itemCountSubject = new BehaviorSubject<number>(0);
+  private cartKey = 'cart';
 
   cart$ = this.cartSubject.asObservable();
   itemCount$ = this.itemCountSubject.asObservable();
 
   // cart = new BehaviorSubject<Cart>({ items: [] })
 
-  constructor(private _snackBar: MatSnackBar) { }
+  constructor(private _snackBar: MatSnackBar) {
+    const storedCart = localStorage.getItem(this.cartKey);
+    if (storedCart) {
+      this.cartSubject.next(JSON.parse(storedCart));
+    }
+  }
+
+  private updateLocalStorage(cart: Cart): void {
+    localStorage.setItem(this.cartKey, JSON.stringify(cart));
+  }
 
   addToCart(item: CartItem): void {
     const items = [...this.cartSubject.value.items];
-
     const itemInCart = items.find((_item) => _item.id === item.id);
+
     if (itemInCart) {
       itemInCart.quantity += 1;
     } else {
       items.push(item);
     }
 
-    this.cartSubject.next({ items });
+    const updatedCart = { items };
+    this.cartSubject.next(updatedCart);
+    // this.cartSubject.next({ items });
     this._snackBar.open('1 item added to cart.', 'Ok', { duration: 3000 });
   }
 
@@ -52,7 +64,11 @@ export class CartService {
       items.push({ ...item, quantity });
     }
 
-    this.cartSubject.next({ items });
+    // this.cartSubject.next({ items });
+
+    const updatedCart = { items };
+    this.cartSubject.next(updatedCart);
+    this.updateLocalStorage(updatedCart);
 
     const totalCount = items.reduce((prev, current) => prev + current.quantity, 0);
     this.itemCountSubject.next(totalCount);
@@ -60,7 +76,10 @@ export class CartService {
 
 
   clearCart(): void {
-    this.cartSubject.next({ items: [] });
+    const updatedCart = { items: [] };
+    this.cartSubject.next(updatedCart);
+    this.updateLocalStorage(updatedCart);
+    // this.cartSubject.next({ items: [] });
     this.itemCountSubject.next(0);
   }
 }
