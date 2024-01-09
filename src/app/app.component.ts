@@ -35,7 +35,7 @@ export class AppComponent {
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    this.cartService.cart.subscribe((_cart) => {
+    this.cartService.cart$.subscribe((_cart) => {
       this.cart = _cart;
     });
   }

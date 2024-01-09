@@ -13,23 +13,32 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent {
-  private _cart: Cart = { items: [] }
-  cartItems: CartItem[] = [];
+  // private _cart: Cart = { items: [] }
+  // cartItems: CartItem[] = [];
 
-  itemsQuantity = 0
+  // itemsCount = this.cartService.itemCount$;
 
-  @Input()
-  get cart(): Cart {
-    return this._cart
+  // itemsQuantity = 0
+
+  // @Input()
+  // get cart(): Cart {
+  //   return this._cart
+  // }
+
+  // set cart(cart: Cart) {
+  //   this._cart = cart;
+
+  //   this.itemsQuantity = cart.items
+  //     .map((item) => item.quantity)
+  //     .reduce((prev, curent) => prev + curent, 0);
+  // }
+
+  @Input() cart: Cart = { items: [] };
+
+  get itemsQuantity(): number {
+    return this.cartService.getCartItems().length;
   }
 
-  set cart(cart: Cart) {
-    this._cart = cart;
-
-    this.itemsQuantity = cart.items
-      .map((item) => item.quantity)
-      .reduce((prev, curent) => prev + curent, 0);
-  }
 
   constructor(private cartService: CartService) { }
 
