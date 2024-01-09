@@ -4,15 +4,15 @@
   padding: 20px;
 }
 
-.size-btn {
-  margin: 10px 10px 10px 0;
+.size-btn, .color-btn {
+  margin: 0 10px 20px 0;
 }
-.size-btn:hover {
+.size-btn:hover, .color-btn:hover {
   background-color: #9F62D1;
   color: white;
 }
 
-.size-btn.selected {
+.size-btn.selected, .color-btn.selected {
   background-color: #9F62D1;
   color: white
 }

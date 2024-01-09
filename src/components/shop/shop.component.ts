@@ -36,6 +36,7 @@ export class ShopComponent implements OnInit {
       product: product.image,
       name: product.name,
       size: product.size,
+      color: product['color'],
       price: product.price,
       quantity: 1,
       id: product.id ?? ''

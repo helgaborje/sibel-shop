@@ -18,6 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProductPageComponent implements OnInit {
   @Input() product: Product | undefined;
   selectedSize: string = '';
+  selectedColor: string = '';
   // products: Product[] = [];
 
   constructor(
@@ -46,17 +47,31 @@ export class ProductPageComponent implements OnInit {
 
       return;
     }
+
+    if (!this.selectedColor) {
+      this._snackBar.open('Please select color', 'Ok', { duration: 3000 });
+
+      return;
+    }
+
     this.cartService.addToCart({
       product: product.image,
       name: product.name,
       size: this.selectedSize,
+      color: this.selectedColor,
       price: product.price,
       quantity: 1,
       id: product.id ?? ''
     })
   }
 
+  // select size
   selectSize(size: string): void {
     this.selectedSize = size;
+  }
+
+  // select color
+  selectColor(color: string): void {
+    this.selectedColor = color;
   }
 }

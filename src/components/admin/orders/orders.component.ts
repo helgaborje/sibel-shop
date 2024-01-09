@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './orders.component.scss'
 })
 export class OrdersComponent implements OnInit {
-  displayedColumns: string[] =  ['position','name', 'products', 'total', 'check', 'delete' ];
+  displayedColumns: string[] =  ['position','name', 'products', 'size', 'color', 'quantity', 'total', 'check', 'delete' ];
   newOrders: any[] = [];
   handledOrders: any[] = [];
 

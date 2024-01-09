@@ -5,6 +5,8 @@
   <div class="col-6 product-info">
     <h5>{{ product.name }}</h5>
     <p>{{ product.description }}</p>
+
+    <!-- size -->
     <h6>Size</h6>
     <button class="size-btn" mat-stroked-button (click)="selectSize('Small')"
       [class.selected]="selectedSize === 'Small'">Small</button>
@@ -12,12 +14,21 @@
       [class.selected]="selectedSize === 'Medium'">Medium</button>
     <button class="size-btn" mat-stroked-button (click)="selectSize('Large')"
       [class.selected]="selectedSize === 'Large'">Large</button>
-    <!-- <h6>
-        Colour
-      </h6> -->
-    <strong>
-      <p>{{ product.price }} SEK</p>
-    </strong>
+
+    <!-- color -->
+    <h6>
+      Color
+    </h6>
+    <button class="color-btn" mat-stroked-button (click)="selectColor('White')"
+      [class.selected]="selectedColor === 'Small'">White</button>
+    <button class="color-btn" mat-stroked-button (click)="selectColor('Black')"
+      [class.selected]="selectedColor === 'Medium'">Black</button>
+    <div>
+
+      <strong>
+        <p>{{ product.price }} SEK</p>
+      </strong>
+    </div>
     <a class="btn" (click)="product && onAddToCart(product)">Add to cart</a>
   </div>
 </div>

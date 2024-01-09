@@ -18,7 +18,7 @@ import { MatTableModule } from '@angular/material/table';
   styleUrl: './check-out.component.scss'
 })
 export class CheckOutComponent implements OnInit {
-  displayedColumns: string[] = ['product','price', 'quantity', 'total', 'delete'];
+  displayedColumns: string[] = ['product','price', 'size', 'color', 'quantity', 'total', 'delete'];
   cartItems: CartItem[] = [];
   dataSource: CartItem[] = [];
 
@@ -34,7 +34,6 @@ export class CheckOutComponent implements OnInit {
   orderError = false;
 
   ngOnInit(): void {
-    // Initialize cartItems in ngOnInit
     this.cartItems = this.cartService.getCartItems();
   }
 
@@ -85,7 +84,7 @@ export class CheckOutComponent implements OnInit {
     console.log('order', order);
 
     this.orderService.createOrder(order).subscribe((orderId) => {
-      // Clear the input fields
+      // clear input fields
       this.customerFirstName = '';
       this.customerLastName = '';
       this.customerAddress = '';
@@ -96,7 +95,7 @@ export class CheckOutComponent implements OnInit {
       this.openOrderConfirmationModal(orderId);
       console.log('Order created with ID:', orderId);
 
-      // Clear cart
+      // clear cart
       this.cartService.clearCart();
 
       this.cartItems = this.cartService.getCartItems();
