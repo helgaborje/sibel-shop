@@ -9,13 +9,31 @@ font-family: 'Anton', sans-serif;
   gap: 20px;
 }
 
+// .nav-headers {
+//   padding-left: 40px;
+// }
+
+// .about {
+//   margin-right: 20px;
+// }
+// .shop {
+//   margin-right: 20px;
+// }
+
 .navbar-nav {
   align-items: center;
 }
 
+.navbar {
+  padding-right: 30px;
+}
+
 .icon-burger {
   filter: invert(1);
+}
 
+.badge {
+  border-radius: 5rem;
 }
 
 .icons {

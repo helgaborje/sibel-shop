@@ -12,12 +12,12 @@
       aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"><img class="icon-burger" src="/assets/icon_burger.svg" alt=""></span>
     </span>
-    <div class="collapse navbar-collapse justify-content-end  order-3" id="navbarTogglerDemo02">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-4">
-        <li class="nav-items">
+    <div class=" collapse navbar-collapse justify-content-end  order-3" id="navbarTogglerDemo02">
+      <ul class="nav-headers navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+        <li class="nav-items shop">
           <a class="nav-h2" routerLink="/products">SHOP</a>
         </li>
-        <li class="nav-items">
+        <li class="nav-items about">
           <a class="nav-h2" routerLink="/about">ABOUT</a>
         </li>
       </ul>
@@ -25,7 +25,7 @@
     <a type="button" class="cart-icon order-lg-4 order-4" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
       aria-controls="offcanvasRight">
       <img class="icon-cart" src="/assets/Icon_cart.svg" alt="" width="28px">
-      <span class="badge bg-danger"> {{itemsQuantity }} </span>
+      <span class="badge bg-danger"> {{ itemsQuantity }} </span>
     </a>
   </div>
 </nav>
