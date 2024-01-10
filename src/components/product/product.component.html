@@ -11,10 +11,10 @@
 
     -->
 <div>
-  <div *ngIf="product">
-    <div>
+  <div class="product-container" *ngIf="product">
+    <div class="product-image">
       <a [routerLink]="['/product', product.id]">
-        <img src="{{ product.image}}" class="card-img-top" alt="...">
+        <img src="{{ product.image}}" class="" alt="...">
       </a>
     </div>
   </div>
