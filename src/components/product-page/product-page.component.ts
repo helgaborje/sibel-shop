@@ -7,12 +7,11 @@ import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [ProductComponent, CommonModule, MatButtonModule, SlickCarouselModule],
+  imports: [ProductComponent, CommonModule, MatButtonModule],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.scss'
 })
