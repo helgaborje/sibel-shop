@@ -33,7 +33,7 @@ export class ShopComponent implements OnInit {
   onAddToCart(product: Product): void {
     console.log('product from shop page', product)
     this.cartService.addToCart({
-      product: product.image,
+      product: product.image[0],
       name: product.name,
       size: product.size,
       color: product['color'],

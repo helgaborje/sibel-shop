@@ -13,13 +13,13 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{{ product.image}}" class="d-block  image" alt="...">
+            <img src="{{ product.image[0]}}" class="d-block  image" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="../../assets/mockups/t-shirt-dessert_black.png" class="d-block  image" style="width: 100%;">
+            <img src="{{ product.image[1]}}" class="d-block  image" style="width: 100%;">
           </div>
           <div class="carousel-item">
-            <img src="../../assets/mockups/t-shirt-dessert_white.png" class="d-block image" style="width: 100%;">
+            <img src="{{ product.image[2]}}" class="d-block image" style="width: 100%;">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"

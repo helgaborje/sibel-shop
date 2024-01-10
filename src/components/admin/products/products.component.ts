@@ -26,7 +26,7 @@ export class ProductsComponent implements OnInit {
   newProduct: Product = {
     name: '',
     description: '',
-    image: '',
+    image: [''],
     price: 0,
     editProduct: true
   }
@@ -82,7 +82,7 @@ export class ProductsComponent implements OnInit {
   addProduct() {
     this.addingNewProduct = !this.addingNewProduct;
     if (!this.addingNewProduct) {
-      this.newProduct = { name: '', description: '', image: '', price: 0, editProduct: false };
+      this.newProduct = { name: '', description: '', image: [''], price: 0, editProduct: false };
     }
   }
 
@@ -96,7 +96,7 @@ export class ProductsComponent implements OnInit {
 
       task.then(snapshot => {
         getDownloadURL(snapshot.ref).then(downloadURL => {
-          this.newProduct.image = downloadURL;
+          this.newProduct.image[0] = downloadURL;
         });
 
         // success

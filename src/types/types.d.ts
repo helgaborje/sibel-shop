@@ -4,7 +4,7 @@ export type Product = {
   size?: string
   price: number
   description: string
-  image: string
+  image: string[]
   editProduct?: boolean
   [key: string]: any;
 }

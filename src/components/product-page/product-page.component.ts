@@ -56,7 +56,7 @@ export class ProductPageComponent implements OnInit {
     }
 
     this.cartService.addToCart({
-      product: product.image,
+      product: product.image[0],
       name: product.name,
       size: this.selectedSize,
       color: this.selectedColor,
