@@ -43,16 +43,24 @@
 
       <!-- Image Column -->
       <ng-container matColumnDef="image">
-        <th mat-header-cell *matHeaderCellDef> Image </th>
+        <th mat-header-cell *matHeaderCellDef> Images </th>
         <td mat-cell *matCellDef="let element">
           <ng-container *ngIf="!element.editProduct; else editMode">
-            <img src="{{element.image}}" alt="" height="60px">
+            <div *ngFor="let image of element.image">
+              <img [src]="image" alt="" height="60px">
+            </div>
             <!-- {{element.image}} -->
           </ng-container>
           <ng-template #editMode>
+            <div class="edit-img" *ngFor="let image of element.image">
+              <img [src]="image" alt="" height="60px">
+              <span class="delete-btn" (click)="deleteImage(element, image)">
+                <img src="../../../assets/Icon_Trash.svg" alt="trash-can" width="22px" />
+              </span>
+            </div>
             <!-- Input field for editing -->
-            <input type="file" (change)="onFileSelected($event)" class="form-control" />
-            <button class="upload-btn" mat-stroked-button (click)="uploadImage()">Upload</button>
+            <input type="file" (change)="onFileSelected($event)" class="form-control" multiple />
+            <button class="upload-btn" mat-stroked-button (click)="uploadImages(element)">Upload</button>
             <!-- <input [(ngModel)]="element.image" class="form-control" />
             <button mat-stroked-button (click)="saveChanges(element)">Save</button> -->
           </ng-template>
@@ -127,8 +135,8 @@
       </div>
       <div class="col-md-6">
         <label class="form-label">Image</label>
-        <input type="file" (change)="onFileSelected($event)" class="form-control" />
-        <button class="upload-btn" mat-stroked-button (click)="uploadImage()">Upload</button>
+        <input type="file" (change)="onFileSelected($event)" class="form-control" multiple />
+        <button class="upload-btn" mat-stroked-button (click)="uploadImages()">Upload</button>
       </div>
       <div class="col-md-6">
         <label class="form-label">Price</label>

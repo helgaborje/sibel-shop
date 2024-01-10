@@ -31,10 +31,11 @@ export class ProductsComponent implements OnInit {
     editProduct: true
   }
 
-  selectedFile: File | null = null;
+  // selectedFile: File | null = null;
+  selectedFiles: FileList | null = null;
 
   onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
+    this.selectedFiles = event.target.files;
   }
 
   constructor(
@@ -47,7 +48,7 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
-  // Get all products
+  // get all products
   private getProducts() {
     this.productService.getAllProducts().subscribe((products) => {
       // this.products = products;
@@ -55,7 +56,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  // Delete product
+  // delete product
   deleteProduct(product: any) {
     const snackBarRef = this._snackBar.open('Are you sure you want to delete product?', 'Delete', { duration: 5000 });
     snackBarRef.onAction().subscribe(() => {
@@ -65,12 +66,12 @@ export class ProductsComponent implements OnInit {
   });
   }
 
-  // Toggle edit mode
+  // toggle edit mode
   toggleEdit(product: any) {
     product.editProduct = !product.editProduct;
   }
 
-  // Save product changes
+  // aave product changes
   saveChanges(product: any) {
     this.productService.updateProduct(product).subscribe(() => {
       this.getProducts();
@@ -78,7 +79,7 @@ export class ProductsComponent implements OnInit {
     product.editProduct = false;
   }
 
-  // Add new product
+  // add new product
   addProduct() {
     this.addingNewProduct = !this.addingNewProduct;
     if (!this.addingNewProduct) {
@@ -86,31 +87,67 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  // upload image to Firebase Storage
-  uploadImage(): void {
-    if (this.selectedFile) {
-      const storage = getStorage();
-      const path = `images/${new Date().getTime()}_${this.selectedFile.name}`;
-      const storageRef = ref(storage, path);
-      const task = uploadBytes(storageRef, this.selectedFile);
+// upload multiple images to Firebase Storage
+uploadImages(product?: Product): void {
+  const storage = getStorage();
+  const uploadTasks: Promise<void>[] = [];
 
-      task.then(snapshot => {
-        getDownloadURL(snapshot.ref).then(downloadURL => {
-          this.newProduct.image[0] = downloadURL;
-        });
+  const targetProduct = product || this.newProduct;
+    targetProduct.image = targetProduct.image || [];
 
-        // success
-        this._snackBar.open('Image is being uploaded', 'Ok', { duration: 3000 });
+  const isNewProduct = !product;
 
-      });
-      task.catch(error => {
-        console.log(error);
-      });
-    }
-
+  if (isNewProduct) {
+    product = this.newProduct;
   }
 
-  // Save new product
+  product!.image = product!.image || [];
+
+  if (this.selectedFiles) {
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      const selectedFile = this.selectedFiles[i];
+      const path = `images/${new Date().getTime()}_${selectedFile.name}`;
+      const storageRef = ref(storage, path);
+      const task = uploadBytes(storageRef, selectedFile);
+
+      const uploadTaskPromise = new Promise<void>((resolve, reject) => {
+        task
+          .then((snapshot) => {
+            getDownloadURL(snapshot.ref)
+              .then((downloadURL) => {
+                isNewProduct ? this.newProduct!.image!.push(downloadURL) : product!.image!.push(downloadURL);
+                resolve();
+              })
+              .catch((error) => reject(error));
+          })
+          .catch((error) => reject(error));
+      });
+
+      uploadTasks.push(uploadTaskPromise);
+    }
+
+    Promise.all(uploadTasks)
+      .then(() => {
+        this._snackBar.open('All images are uploaded', 'Ok', { duration: 3000 });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+}
+
+ // delete image in edit mode
+deleteImage(element: Product, imageToDelete: string): void {
+  const snackBarRef = this._snackBar.open('Are you sure you want to delete the image?', 'Yes', {
+    duration: 5000,
+  });
+
+  snackBarRef.onAction().subscribe(() => {
+    element.image = element.image.filter((image: string) => image !== imageToDelete);
+  });
+}
+
+  // save new product
   saveNewProduct() {
     this.productService.createProduct(this.newProduct).subscribe(() => {
       this.getProducts();
@@ -118,6 +155,32 @@ export class ProductsComponent implements OnInit {
     });
   }
 }
+
+
+
+  // upload image to Firebase Storage
+  // uploadImage(): void {
+  //   if (this.selectedFile) {
+  //     const storage = getStorage();
+  //     const path = `images/${new Date().getTime()}_${this.selectedFile.name}`;
+  //     const storageRef = ref(storage, path);
+  //     const task = uploadBytes(storageRef, this.selectedFile);
+
+  //     task.then(snapshot => {
+  //       getDownloadURL(snapshot.ref).then(downloadURL => {
+  //         this.newProduct.image[0] = downloadURL;
+  //       });
+
+  //       // success
+  //       this._snackBar.open('Image is being uploaded', 'Ok', { duration: 3000 });
+
+  //     });
+  //     task.catch(error => {
+  //       console.log(error);
+  //     });
+  //   }
+
+  // }
 
 
 
