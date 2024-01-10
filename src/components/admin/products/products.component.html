@@ -117,26 +117,26 @@
   <!-- Add product -->
   <form class="row g-3">
     <ng-container *ngIf="addingNewProduct">
-      <div class="col-md-4">
-        <label class="form-label">Name:</label>
-        <input [(ngModel)]="newProduct.name" type="text" class="form-control" />
+      <div class="col-md-6">
+        <label class="form-label">Name</label>
+        <input [(ngModel)]="newProduct.name" type="text" class="form-control" name="name" />
       </div>
-      <div class="col-md-4">
-        <label class="form-label">Description:</label>
-        <input [(ngModel)]="newProduct.description" type="text" class="form-control" />
+      <div class="col-md-6">
+        <label class="form-label">Description</label>
+        <input [(ngModel)]="newProduct.description" type="text" class="form-control" name="description" />
       </div>
-      <div class="col-md-4">
-        <label class="form-label">Image:</label>
+      <div class="col-md-6">
+        <label class="form-label">Image</label>
         <input type="file" (change)="onFileSelected($event)" class="form-control" />
         <button class="upload-btn" mat-stroked-button (click)="uploadImage()">Upload</button>
       </div>
-      <div class="col-md-4">
-        <label class="form-label">Price:</label>
-        <input [(ngModel)]="newProduct.price" type="number" class="form-control" />
+      <div class="col-md-6">
+        <label class="form-label">Price</label>
+        <input [(ngModel)]="newProduct.price" type="number" class="form-control" name="price" />
       </div>
-      <div>
+      <div class="d-flex justify-content-end">
         <button class="save-btn" mat-stroked-button (click)="saveNewProduct()">Save</button>
-        <button mat-stroked-button (click)="addProduct()">Cancel</button>
+        <button class="cancel-btn" mat-stroked-button (click)="addProduct()">Cancel</button>
       </div>
     </ng-container>
   </form>

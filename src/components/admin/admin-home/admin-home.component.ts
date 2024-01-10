@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { OrdersComponent } from '../orders/orders.component';
@@ -30,6 +30,13 @@ export class AdminHomeComponent{
         console.error('Logout error', error);
       });
   }
+
+  // logout on brower close
+  // @HostListener('window:beforeunload', ['$event'])
+  // unloadHandler(event: Event) {
+  //   this.logout();
+  // }
+
 
 
 
