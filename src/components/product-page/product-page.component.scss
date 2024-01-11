@@ -23,6 +23,7 @@
   object-fit: contain;
   // border: 1px solid grey;
   background-color: #e1e1e1;
+  margin-bottom: 20px;
 
 }
 
@@ -34,4 +35,8 @@
 
 .product-info {
   align-items: center;
+}
+
+.col-6 {
+  width: 100%;
 }
