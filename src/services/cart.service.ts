@@ -40,6 +40,7 @@ export class CartService {
 
     const updatedCart = { items };
     this.cartSubject.next(updatedCart);
+    this.updateLocalStorage(updatedCart);
     // this.cartSubject.next({ items });
     this._snackBar.open('1 item added to cart.', 'Ok', { duration: 3000 });
   }
@@ -82,4 +83,5 @@ export class CartService {
     // this.cartSubject.next({ items: [] });
     this.itemCountSubject.next(0);
   }
+
 }
