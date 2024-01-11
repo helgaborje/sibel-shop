@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-12 item-container">
           <img src="{{ item.product }}" alt="" height="60px">
-          <h6>{{item.name}}</h6>
+          <h6 class="h6">{{item.name}}</h6>
           <span class="delete-btn">
             <img src="../../../assets/Icon_Trash.svg" alt="trash-can" width="22px" (click)="deleteItem(item)">
           </span>
@@ -23,11 +23,11 @@
         </span>
         <!-- <p>{{item.price}} SEK</p> -->
       </div>
-      <div class="col-6 d-flex align-items-center justify-content-between">
+      <div class="product col-12 d-flex align-items-center justify-content-between">
         <div class="quantity-buttons">
-          <button (click)="decreaseQuantity(item)">-</button>
+          <span class="add-btn" (click)="decreaseQuantity(item)">-</span>
           {{item.quantity}}
-          <button (click)="increaseQuantity(item)">+</button>
+          <span class="add-btn" (click)="increaseQuantity(item)">+</span>
         </div>
         <div class="total-product-sum">
           <strong><span>{{getProductTotal(item)}} SEK </span></strong>
@@ -39,7 +39,7 @@
   <div>
     <hr>
     <div class="total-sum">
-      <strong><span>Total: {{getTotal(cart.items)}} SEK </span></strong>
+      <strong><span>Total {{getTotal(cart.items)}} SEK </span></strong>
     </div>
   </div>
   <button [routerLink]="['/checkout']" type="button" class="btn cart-btn" data-bs-dismiss="offcanvas">Check out</button>

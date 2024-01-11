@@ -3,9 +3,25 @@
   display: flex;
   justify-content: center;
   padding: 20px;
-  max-width: 600px;
+  // max-width: 600px;
 }
 
 li{
   list-style: none;
+}
+
+
+.add-btn {
+  border: 1px solid rgb(226, 226, 226);
+  padding: 2px 6px 2px 6px;
+  cursor: pointer;
+}
+
+.selected-products {
+  margin-bottom: 20px;
+}
+
+table {
+  margin-bottom: 20px;
+  padding: 5px;
 }

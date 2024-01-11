@@ -13,6 +13,11 @@ body {
 h1, h2, h3, h3, h4, h5, h6 {
   font-family: 'Anton', sans-serif;
   text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-size: 60px;
 }
 
 p {
@@ -24,9 +29,9 @@ text-decoration: none;
 }
 
 .btn {
-  color: white;
-  background-color: black;
-  border-color: black;
+  color: #FAFAFA;
+  background-color: #1C1C1C;
+  border-color: #1C1C1C;
   // background-color: #9F62D1;
   // border-color: #9F62D1;
   border-radius: 0 18px 18px 18px;
