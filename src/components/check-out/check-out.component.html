@@ -6,7 +6,7 @@
         <div class="col-12" *ngIf="cartItems.length <= 0">
           Your shoppingbag is empty.
         </div>
-        <div *ngIf="cartItems.length > 0">
+        <div class="table-wrapper" *ngIf="cartItems.length > 0">
           <table mat-table [dataSource]="cartItems" class="mat-elevation-z8">
 
             <!-- Image Column -->
@@ -68,14 +68,14 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
           </table>
-
-          <strong>
-            Totalt {{ getTotal() }} SEK
-          </strong>
         </div>
       </div>
+      <strong class="total-sum">
+        Totalt {{ getTotal() }} SEK
+      </strong>
 
-      <form class="row g-3">
+
+      <form class="row g-3" *ngIf="cartItems.length > 0">
         <div class="col-md-4">
           <label for="validationCustom01" class="form-label">First name</label>
           <input [(ngModel)]="customerFirstName" type="text" class="form-control" id="validationCustom01" value="Name"

@@ -23,6 +23,7 @@ export class NavigationComponent {
   getTotal(items: CartItem[]): number {
     return this.cartService.getTotal(items);
   }
+
 }
 
 

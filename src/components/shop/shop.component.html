@@ -1,8 +1,8 @@
-<div class="card-container">
-  <div class="row content-container">
-    <div class="col-md-4" *ngFor="let product of products; let i = index">
-      <app-product [product]="product" (addToCart)="onAddToCart($event)">
-      </app-product>
-    </div>
+<!-- <div class="card-container"> -->
+<div class="row content-container">
+  <div class="col-md-4" *ngFor="let product of products; let i = index">
+    <app-product [product]="product" (addToCart)="onAddToCart($event)">
+    </app-product>
   </div>
 </div>
+<!-- </div> -->
