@@ -9,13 +9,9 @@ font-family: 'Anton', sans-serif;
   gap: 20px;
 }
 
-// .container-fluid {
-//   margin-left:  20px !important;
-//   margin-right: 60px;
-// }
-
 .navbar-nav {
   align-items: center;
+
 }
 
 .navbar-expand-lg {
@@ -75,4 +71,11 @@ img {
   border: 1px solid #84bbf3;
   color: #ffffff;
   text-shadow: 0 1px 0 #528ecc;
+}
+
+
+@media screen and (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav {
+    margin-right: 70px;
+}
 }

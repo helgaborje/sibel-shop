@@ -19,7 +19,7 @@
 }
 
 .product-img {
-  max-width: 400px;
+  max-width: 520px;
   min-width: 300px;
   object-fit: contain;
   // border: 1px solid grey;
@@ -30,12 +30,13 @@
 
 .image {
   // width: auto;
-  height: 350px;
+  // height: 350px;
   object-fit: contain;
 }
 
 .product-info {
-  align-items: center;
+ margin-bottom: 20px;
+ max-width: 520px;
 }
 
 .col-6 {
