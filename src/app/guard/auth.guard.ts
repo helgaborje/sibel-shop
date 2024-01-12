@@ -15,7 +15,7 @@ export class AuthGuard {
     return this.authService.user$.pipe(
       take(1),
       map((user) => {
-        if (user && user.email === 'helgaborjesson@gmail.com') {
+        if (user && user.email === 'helgaborjesson@gmail.com' || 'hello@sibelbeymen.com' || 'martin.haagen@elevera.org') {
           return true;
         } else {
           this.router.navigate(['/admin']);
