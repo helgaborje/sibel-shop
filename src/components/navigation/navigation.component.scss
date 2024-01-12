@@ -9,20 +9,9 @@ font-family: 'Anton', sans-serif;
   gap: 20px;
 }
 
-.container-fluid {
-  margin-left:  20px !important;
-  margin-right: 60px;
-}
-
-// .nav-headers {
-//   padding-left: 40px;
-// }
-
-// .about {
-//   margin-right: 20px;
-// }
-// .shop {
-//   margin-right: 20px;
+// .container-fluid {
+//   margin-left:  20px !important;
+//   margin-right: 60px;
 // }
 
 .navbar-nav {
@@ -31,7 +20,6 @@ font-family: 'Anton', sans-serif;
 
 .navbar-expand-lg {
   justify-content: space-between;
-  padding-right: 30px;
 }
 .navbar-brand {
  margin-right: 0;
@@ -57,7 +45,6 @@ padding: 0;
 
 .icon-cart {
   filter: invert(1);
-  // margin-left: 20px;
 }
 
 .cart-icon {
@@ -74,14 +61,13 @@ img {
 }
 
 .container-fluid {
-  margin-left: 60px;
-  margin-right: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .offcanvas {
   z-index: 1050;
 }
-
 
 .activebutton {
   box-shadow: inset 0 1px 0 0 #dcecfb;
