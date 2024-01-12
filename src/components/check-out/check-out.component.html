@@ -70,18 +70,35 @@
           </table>
         </div>
       </div>
-      <strong class="total-sum">
+      <strong *ngIf="getTotal() > 1" class="total-sum">
         Totalt {{ getTotal() }} SEK
       </strong>
 
 
+      <!-- Form -->
       <form class="row g-3" *ngIf="cartItems.length > 0">
+
+        <label for="shipmentSelect" class="form-label">Shipment options</label>
+        <select id="shipmentSelect" class="form-select col-md-6" aria-label="Shipment" [(ngModel)]="shipment"
+          name="shipment">
+          <!-- <option selected>Shipment options</option> -->
+          <option value="Mail box">Deliver to mail box</option>
+          <option value="Pick up point">Deliver to closest pick up point</option>
+        </select>
+
+        <label for="paymentSelect" class="form-label">Payment options</label>
+        <select id="paymentSelect" class="form-select col-md-6" aria-label="Payment" [(ngModel)]="payment"
+          name="payment">
+          <!-- <option selected>Payment options</option> -->
+          <option value="Invoice">Invoice</option>
+        </select>
+
         <div class="col-md-4">
           <label for="validationCustom01" class="form-label">First name</label>
           <input [(ngModel)]="customerFirstName" type="text" class="form-control" id="validationCustom01" value="Name"
             required name="first">
-
         </div>
+
         <div class="col-md-4">
           <label for="validationCustom02" class="form-label">Last name</label>
           <input [(ngModel)]="customerLastName" type="text" class="form-control" id="validationCustom02"
@@ -110,11 +127,34 @@
         </div>
 
         <div class="col-4">
-          <button (click)="checkout()" type="submit" class="btn" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">Confirm</button>
+          <button (click)="reviewOrderBeforePlacing()" type="submit" class="btn">Review order</button>
         </div>
         <!-- </div> -->
       </form>
+
+      <div class="review-order-container" *ngIf="reviewOrder">
+        <h2>Review you order</h2>
+        <!-- order details-->
+        <h6>Customer Info</h6>
+        <p> {{customerFirstName}} {{customerLastName}}</p>
+        <p> {{customerAddress}}, {{customerZip}} {{customerCity}} </p>
+        <p> {{customerEmail}} </p>
+        <p> {{shipment}} </p>
+        <p> {{payment}} </p>
+        <h6> Products </h6>
+
+        <div *ngFor="let item of cartItems">
+          <p> {{item.name}} {{item.price}} {{item.size}} {{item.color}} {{item.quantity}} </p>
+
+        </div>
+        <div></div>
+
+        <div class="col-6">
+          <button (click)="goBack()" type="submit" class="btn go-back">change order</button>
+          <button (click)="checkout()" type="submit" class="btn">Confirm Order</button>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>

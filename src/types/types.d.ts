@@ -26,6 +26,8 @@ export type CartItem = {
 
 export type Order = {
   id?: string
+  shipment: string
+  payment: string
   firstName: string
   lastName: string
   email: string

@@ -38,7 +38,7 @@
   </div>
   <div>
     <hr>
-    <div class="total-sum">
+    <div *ngIf="getTotal(cart.items) > 1" class="total-sum">
       <strong><span>Total {{getTotal(cart.items)}} SEK </span></strong>
     </div>
   </div>

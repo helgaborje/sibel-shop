@@ -22,7 +22,9 @@ export class CheckOutComponent implements OnInit {
   cartItems: CartItem[] = [];
   dataSource: CartItem[] = [];
 
-
+  // form fields
+  payment: string = '';
+  shipment: string = '';
   customerFirstName: string = '';
   customerLastName: string = '';
   customerAddress: string = '';
@@ -32,6 +34,8 @@ export class CheckOutComponent implements OnInit {
 
   orderSuccess = false;
   orderError = false;
+
+  reviewOrder = false;
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
@@ -55,10 +59,10 @@ export class CheckOutComponent implements OnInit {
 
   checkout(): void {
 
-    if (!this.customerFirstName || !this.customerLastName || !this.customerAddress || !this.customerCity || !this.customerZip || !this.customerEmail) {
-      this._snackBar.open('Please fill in all required fields before placing the order', 'Ok', { duration: 3000 });
-      return;
-    }
+    // if (!this.payment || !this.shipment || !this.customerFirstName || !this.customerLastName || !this.customerAddress || !this.customerCity || !this.customerZip || !this.customerEmail) {
+    //   this._snackBar.open('Please fill in all required fields before placing the order', 'Ok', { duration: 3000 });
+    //   return;
+    // }
 
     const selectedProducts = this.cartService.getCartItems();
     const totalOrder = this.cartService.getTotal(selectedProducts);
@@ -73,6 +77,8 @@ export class CheckOutComponent implements OnInit {
     const order: Order = {
       products: selectedProducts,
       timestamp: Date.now().toLocaleString(),
+      shipment: this.shipment,
+      payment: this.payment,
       firstName: this.customerFirstName,
       lastName: this.customerLastName,
       address: [this.customerAddress, this.customerCity, this.customerZip],
@@ -85,6 +91,8 @@ export class CheckOutComponent implements OnInit {
 
     this.orderService.createOrder(order).subscribe((orderId) => {
       // clear input fields
+      this.payment = '';
+      this.shipment = '';
       this.customerFirstName = '';
       this.customerLastName = '';
       this.customerAddress = '';
@@ -92,7 +100,12 @@ export class CheckOutComponent implements OnInit {
       this.customerCity = '';
       this.customerZip = '';
 
+      // review order before placing it
+      this.reviewOrder = true;
+
+
       this.openOrderConfirmationModal(orderId);
+      this.reviewOrder = false;
       console.log('Order created with ID:', orderId);
 
       // clear cart
@@ -137,6 +150,21 @@ export class CheckOutComponent implements OnInit {
   openOrderConfirmationModal(orderId: string): void {
     const modalRef = this.modalService.open(OrderConfirmationModalComponent);
     modalRef.componentInstance.orderId = orderId;
+  }
+
+  // go back to input fields
+  goBack() {
+    this.reviewOrder = false;
+  }
+
+  // review order before placing it
+  reviewOrderBeforePlacing() {
+    if (!this.payment || !this.shipment || !this.customerFirstName || !this.customerLastName || !this.customerAddress || !this.customerCity || !this.customerZip || !this.customerEmail) {
+      this._snackBar.open('Please fill in all required fields before placing the order', 'Ok', { duration: 3000 });
+      return;
+    }
+
+    this.reviewOrder = true;
   }
 
 }
