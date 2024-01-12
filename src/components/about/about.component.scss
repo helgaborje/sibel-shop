@@ -1,18 +1,25 @@
-.about-container {
+.content-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 80%;
-  margin-top: 20px;
-
 }
 
+.about-img {
+  display: flex;
+  justify-content: center;
+  object-fit: contain;
+}
 
 img {
   width: 100%;
-
 }
 
 .about-text {
   margin: 20px;
+  min-width: 320px;
+  max-width: 480px;
+}
+
+p {
+  font-size: 14px;
 }
