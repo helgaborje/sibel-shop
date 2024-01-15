@@ -16,14 +16,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(),
-    importProvidersFrom(provideFirebaseApp(() => initializeApp({
-      "projectId": "sibel-shop",
-      "appId": "1:899347068785:web:fb7506a9918ae3c280e8d0",
-      "storageBucket": "sibel-shop.appspot.com",
-      "apiKey": "AIzaSyALdpiW42KybJqN8afIrCiWijjT5x7O7U0",
-      "authDomain": "sibel-shop.firebaseapp.com",
-      "messagingSenderId": "899347068785"
-    }))),
+    importProvidersFrom(provideFirebaseApp(() => initializeApp(environment.firebaseConfig))),
     importProvidersFrom(provideAuth(() => getAuth())),
     importProvidersFrom(provideFirestore(() => getFirestore())),
     importProvidersFrom(provideStorage(() => getStorage())),

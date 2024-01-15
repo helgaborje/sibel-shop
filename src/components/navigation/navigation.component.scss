@@ -11,7 +11,6 @@ font-family: 'Anton', sans-serif;
 
 .navbar-nav {
   align-items: center;
-
 }
 
 .navbar-expand-lg {
@@ -23,11 +22,15 @@ font-family: 'Anton', sans-serif;
 
 .icon-burger {
   filter: invert(1);
-  margin-bottom: -2px;
+  margin-bottom: -4px;
 }
 
 .badge {
   border-radius: 5rem;
+  position: absolute ;
+  z-index: 99;
+  right: -12px;
+  bottom: -2px;
 }
 
 .icons {
@@ -49,16 +52,10 @@ padding: 0;
   right: 0;
   margin-right: 30px;
   margin-top: 20px;
-
 }
 
 img {
   vertical-align: text-bottom;
-}
-
-.container-fluid {
-  margin-left: 20px;
-  margin-right: 20px;
 }
 
 .offcanvas {
@@ -72,7 +69,6 @@ img {
   color: #ffffff;
   text-shadow: 0 1px 0 #528ecc;
 }
-
 
 @media screen and (min-width: 992px) {
   .navbar-expand-lg .navbar-nav {

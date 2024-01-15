@@ -4,12 +4,9 @@
     <span type="button" class="text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
       <img src="../../assets/Icon_Exit.svg" alt="close" width="22px">
     </span>
-    <!-- <hr> -->
   </div>
-  <!-- <span class="mr-16">{{ cart.items.length }} items</span> -->
-  <!-- <hr> -->
-  <div *ngIf="cart.items?.length" class="offcanvas-body">
-    <div *ngFor="let item of cart?.items">
+  <div *ngIf="cart.items.length > 0" class="offcanvas-body">
+    <div *ngFor="let item of cart.items">
       <div class="row">
         <div class="col-12 item-container">
           <img src="{{ item.product }}" alt="" height="60px">
@@ -21,7 +18,6 @@
         <span>
           {{item.size}}, {{item.color}}
         </span>
-        <!-- <p>{{item.price}} SEK</p> -->
       </div>
       <div class="product col-12 d-flex align-items-center justify-content-between">
         <div class="quantity-buttons">
@@ -44,26 +40,3 @@
   </div>
   <button [routerLink]="['/checkout']" type="button" class="btn cart-btn" data-bs-dismiss="offcanvas">Check out</button>
 </div>
-
-
-<!-- <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-  <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel">CART</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div *ngIf="cart.items?.length">
-      <span class="mr-16">{{ cart.items.length }} items</span>
-      <div *ngFor="let item of cart?.items">
-        <p>{{ item | json }}</p>
-        <h6>{{item.name}} x {{item.quantity}} </h6>
-        <p>{{item.price}} SEK</p>
-        <hr>
-        <div>
-          Total:
-          <span>{{getTotal(cart.items)}} </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

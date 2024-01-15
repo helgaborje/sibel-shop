@@ -15,7 +15,6 @@ export class CartService {
   cart$ = this.cartSubject.asObservable();
   itemCount$ = this.itemCountSubject.asObservable();
 
-  // cart = new BehaviorSubject<Cart>({ items: [] })
 
   constructor(private _snackBar: MatSnackBar) {
     const storedCart = localStorage.getItem(this.cartKey);
@@ -41,7 +40,6 @@ export class CartService {
     const updatedCart = { items };
     this.cartSubject.next(updatedCart);
     this.updateLocalStorage(updatedCart);
-    // this.cartSubject.next({ items });
     this._snackBar.open('1 item added to cart.', 'Ok', { duration: 3000 });
   }
 
@@ -55,6 +53,7 @@ export class CartService {
       .reduce((prev, current) => prev + current, 0);
   }
 
+  // update item quantity
   updateItemQuantity(item: CartItem, quantity: number): void {
     const items = [...this.cartSubject.value.items];
     const itemIndex = items.findIndex((_item) => _item.id === item.id);
@@ -65,8 +64,6 @@ export class CartService {
       items.push({ ...item, quantity });
     }
 
-    // this.cartSubject.next({ items });
-
     const updatedCart = { items };
     this.cartSubject.next(updatedCart);
     this.updateLocalStorage(updatedCart);
@@ -75,13 +72,29 @@ export class CartService {
     this.itemCountSubject.next(totalCount);
   }
 
-
+  // clear cart
   clearCart(): void {
     const updatedCart = { items: [] };
     this.cartSubject.next(updatedCart);
     this.updateLocalStorage(updatedCart);
-    // this.cartSubject.next({ items: [] });
     this.itemCountSubject.next(0);
   }
 
+  // delete item from cart
+  deleteItem(item: CartItem) {
+    this.updateItemQuantity(item, -item.quantity);
+    console.log(item, "deleted from cart");
+
+    // remove item from cart
+    const items = this.cartSubject.value.items.slice();
+    const index = items.findIndex((_item) => _item.id === item.id);
+    if (index !== -1) {
+      items.splice(index, 1);
+    }
+
+    // update cart
+    const updatedCart = { items };
+    this.cartSubject.next(updatedCart);
+    this.updateLocalStorage(updatedCart);
+  }
 }

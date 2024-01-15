@@ -22,9 +22,9 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.cartSubscription = this.cartService.cart$.subscribe((_cart: Cart) => {
-      this.cart = _cart;
-      this.dataSource = _cart.items;
+    this.cartSubscription = this.cartService.cart$.subscribe((cart: Cart) => {
+      this.cart = cart;
+      this.dataSource = cart.items;
     });
   }
 
@@ -52,13 +52,13 @@ export class CartComponent implements OnInit {
 
   // delete item from cart
   deleteItem(item: CartItem) {
-    this.cartService.updateItemQuantity(item, -item.quantity);
-    // remove item from cart
-    const index = this.dataSource.findIndex((_item) => _item.id === item.id);
-    if (index !== -1) {
-      this.dataSource.splice(index, 1);
-    }
+    this.cartService.deleteItem(item);
+
   }
 
-
+  ngOnDestroy(): void {
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
+  }
 }
