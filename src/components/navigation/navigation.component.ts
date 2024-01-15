@@ -23,43 +23,4 @@ export class NavigationComponent {
   getTotal(items: CartItem[]): number {
     return this.cartService.getTotal(items);
   }
-
 }
-
-
-
-// cart: Cart = { items: [] };
-
-// constructor(private cartService: CartService) {}
-
-// ngOnInit() {
-//   this.cartService.cart.subscribe((_cart) => {
-//     this.cart = _cart;
-//     console.log('Cart Items:', this.cart.items);
-//   });
-
-
-  // private _cart: Cart = { items: [] }
-  // cartItems: CartItem[] = [];
-
-  // itemsCount = this.cartService.itemCount$;
-
-  // itemsQuantity = 0
-
-  // @Input()
-  // get cart(): Cart {
-  //   return this._cart
-  // }
-
-  // set cart(cart: Cart) {
-  //   this._cart = cart;
-
-  //   this.itemsQuantity = cart.items
-  //     .map((item) => item.quantity)
-  //     .reduce((prev, curent) => prev + curent, 0);
-  // }
-
-
-
-
-// }

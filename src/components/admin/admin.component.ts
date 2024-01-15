@@ -24,7 +24,6 @@ export class AdminComponent {
   login() {
     this.authService.signInWithEmailAndPassword(this.email, this.password)
     .then((userCredential) => {
-      console.log('Signed in works!', userCredential);
       this.router.navigate(['/admin-home']);
     })
     .catch((error) => {

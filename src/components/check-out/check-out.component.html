@@ -63,7 +63,6 @@
               </td>
             </ng-container>
 
-
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
@@ -81,7 +80,6 @@
         <label for="shipmentSelect" class="form-label">Shipment options</label>
         <select id="shipmentSelect" class="form-select col-md-6" aria-label="Shipment" [(ngModel)]="shipment"
           name="shipment">
-          <!-- <option selected>Shipment options</option> -->
           <option value="Mail box">Deliver to mail box</option>
           <option value="Pick up point">Deliver to closest pick up point</option>
         </select>
@@ -89,7 +87,6 @@
         <label for="paymentSelect" class="form-label">Payment options</label>
         <select id="paymentSelect" class="form-select col-md-6" aria-label="Payment" [(ngModel)]="payment"
           name="payment">
-          <!-- <option selected>Payment options</option> -->
           <option value="Invoice">Invoice</option>
         </select>
 
@@ -129,7 +126,6 @@
         <div class="col-4">
           <button (click)="reviewOrderBeforePlacing()" type="submit" class="btn">Review order</button>
         </div>
-        <!-- </div> -->
       </form>
 
       <div class="review-order-container" *ngIf="reviewOrder">

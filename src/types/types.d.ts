@@ -9,7 +9,6 @@ export type Product = {
   [key: string]: any;
 }
 
-
 export type Cart = {
   items: CartItem[]
 }

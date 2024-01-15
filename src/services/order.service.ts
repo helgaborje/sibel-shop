@@ -23,7 +23,6 @@ export class OrderService {
   }
 
   updateOrder(order: Order): Observable<void> {
-    console.log('order', order);
     return from(updateDoc(doc(this.fs, `orders/${order.id}`), order));
   }
 

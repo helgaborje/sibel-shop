@@ -20,7 +20,6 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 export class ProductsComponent implements OnInit {
   displayedColumns: string[] =  ['position','name', 'description', 'image', 'price', 'edit', 'delete' ];
-  // products: any[] = [];
   products: Product[] = [];
   addingNewProduct: boolean = false;
   newProduct: Product = {
@@ -31,7 +30,6 @@ export class ProductsComponent implements OnInit {
     editProduct: true
   }
 
-  // selectedFile: File | null = null;
   selectedFiles: FileList | null = null;
 
   onFileSelected(event: any): void {
@@ -51,7 +49,6 @@ export class ProductsComponent implements OnInit {
   // get all products
   private getProducts() {
     this.productService.getAllProducts().subscribe((products) => {
-      // this.products = products;
       this.products = products.map(product => ({ ...product, editProduct: false }));
     });
   }
@@ -155,32 +152,3 @@ deleteImage(element: Product, imageToDelete: string): void {
     });
   }
 }
-
-
-
-  // upload image to Firebase Storage
-  // uploadImage(): void {
-  //   if (this.selectedFile) {
-  //     const storage = getStorage();
-  //     const path = `images/${new Date().getTime()}_${this.selectedFile.name}`;
-  //     const storageRef = ref(storage, path);
-  //     const task = uploadBytes(storageRef, this.selectedFile);
-
-  //     task.then(snapshot => {
-  //       getDownloadURL(snapshot.ref).then(downloadURL => {
-  //         this.newProduct.image[0] = downloadURL;
-  //       });
-
-  //       // success
-  //       this._snackBar.open('Image is being uploaded', 'Ok', { duration: 3000 });
-
-  //     });
-  //     task.catch(error => {
-  //       console.log(error);
-  //     });
-  //   }
-
-  // }
-
-
-

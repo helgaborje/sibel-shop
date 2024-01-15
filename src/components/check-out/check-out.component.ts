@@ -87,8 +87,6 @@ export class CheckOutComponent implements OnInit {
       pending: true
     };
 
-    console.log('order', order);
-
     this.orderService.createOrder(order).subscribe((orderId) => {
       // clear input fields
       this.payment = '';
@@ -103,16 +101,13 @@ export class CheckOutComponent implements OnInit {
       // review order before placing it
       this.reviewOrder = true;
 
-
       this.openOrderConfirmationModal(orderId);
       this.reviewOrder = false;
-      console.log('Order created with ID:', orderId);
 
       // clear cart
       this.cartService.clearCart();
 
       this.cartItems = this.cartService.getCartItems();
-      console.log('cartItems', this.cartItems);
     });
   }
 

@@ -36,10 +36,6 @@ export class CartComponent implements OnInit {
     return item.price * item.quantity;
   }
 
-  checkOut() {
-
-  }
-
   // increase quantity
   increaseQuantity(item: CartItem) {
     this.cartService.updateItemQuantity(item, 1);

@@ -83,7 +83,6 @@ export class CartService {
   // delete item from cart
   deleteItem(item: CartItem) {
     this.updateItemQuantity(item, -item.quantity);
-    console.log(item, "deleted from cart");
 
     // remove item from cart
     const items = this.cartSubject.value.items.slice();

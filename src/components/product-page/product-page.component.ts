@@ -19,7 +19,6 @@ export class ProductPageComponent implements OnInit {
   @Input() product: Product | undefined;
   selectedSize: string = '';
   selectedColor: string = '';
-  // products: Product[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -31,26 +30,21 @@ export class ProductPageComponent implements OnInit {
 
     ngOnInit(): void {
       let productId = this.route.snapshot.paramMap.get('id')!;
-      console.log('productId', productId)
 
     productId && this.productService.getProduct(productId).subscribe((response) => {
-      console.log('response', response)
       this.product = response;
 
     });
   }
 
   onAddToCart(product: Product): void {
-    console.log('product from product-page', product)
     if (!this.selectedSize) {
       this._snackBar.open('Please select size', 'Ok', { duration: 3000 });
-
       return;
     }
 
     if (!this.selectedColor) {
       this._snackBar.open('Please select color', 'Ok', { duration: 3000 });
-
       return;
     }
 
