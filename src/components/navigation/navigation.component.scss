@@ -20,10 +20,6 @@ font-family: 'Anton', sans-serif;
  margin-right: 0;
 }
 
-.container-fluid {
-  margin-left: 10px;
-}
-
 .icon-burger {
   filter: invert(1);
   margin-bottom: -4px;
@@ -76,6 +72,6 @@ img {
 
 @media screen and (min-width: 992px) {
   .navbar-expand-lg .navbar-nav {
-    margin-right: 70px;
+    margin-right: 60px;
 }
 }
