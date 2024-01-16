@@ -18,7 +18,6 @@ li{
 }
 
 table {
-  // margin-bottom: 40px;
   padding: 5px;
 }
 
@@ -28,4 +27,16 @@ table {
 
 .go-back {
   margin-right: 10px;
+}
+
+.form-label {
+  margin-bottom: -12px;
+}
+
+.form-select {
+  margin-left: 10px;
+}
+
+.btn {
+  min-width: 130px;
 }
