@@ -25,7 +25,7 @@ export class ProductsComponent implements OnInit {
   newProduct: Product = {
     name: '',
     description: '',
-    image: [''],
+    image: [],
     price: 0,
     editProduct: true
   }
@@ -128,7 +128,7 @@ uploadImages(product?: Product): void {
         this._snackBar.open('All images are uploaded', 'Ok', { duration: 3000 });
       })
       .catch((error) => {
-        console.log(error);
+        this._snackBar.open(error, 'Ok', { duration: 3000 });
       });
   }
 }
